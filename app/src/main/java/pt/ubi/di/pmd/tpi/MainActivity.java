@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         // If the Exit Button is pressed, close the app
         exit.setOnClickListener(v -> finish());
 
-        // Manage the recycler view layout and his text fields
+        // Manage the recycler view layout and his text fields and buttons
 
         // Add TextFields to the recycler view (5 players max)
         // If the Add Player Button is pressed, add a new text field to the recycler view
