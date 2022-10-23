@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TPI</string>
+    <string name="icone">icone da app</string>
+    <string name="titulo_jogo">Spying Game</string>
+    <string name="sair_jogo">Sair</string>
+    <string name="jogar_jogo">Jogar</string>
+    <string name="comecar">começar</string>
+    <string name="adicionar">+</string>
+</resources>
