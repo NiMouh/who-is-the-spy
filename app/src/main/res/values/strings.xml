@@ -6,4 +6,7 @@
     <string name="jogar_jogo">Jogar</string>
     <string name="comecar">começar</string>
     <string name="adicionar">+</string>
+    <string name="adiciona_jogador">Adicionar Jogador</string>
+    <string name="adicionar_texto">Adicionar Texto</string>
+    <string name="nome_dos_jogadores">Nome dos Jogadores:</string>
 </resources>
