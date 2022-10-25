@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameActivity extends AppCompatActivity {
@@ -22,6 +24,9 @@ public class GameActivity extends AppCompatActivity {
     TextView role_subtitle;
     Button queque;
 
+    // Make an ArrayList of the roles
+    ArrayList<String> roles = new ArrayList<>();
+
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -29,8 +34,8 @@ public class GameActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        // Make an aux to give the player roles (there is 1 investigator for every 4 players)
-        final int[] role_aux = {0};
+        // Call the method that adds the roles to the ArrayList
+        giveRoles();
 
         // Make an aux with the number of the players, if that number comes to 0, go to the next activity
         AtomicInteger player_size_aux = new AtomicInteger(players.size());
@@ -57,17 +62,7 @@ public class GameActivity extends AppCompatActivity {
             player_name.setText(players.get(players.size() - player_size_aux.get()).getName());
 
             // Give role to the current player
-            if (role_aux[0] == 0) {
-                player_role.setText("Espião");
-                // Set player role in the player class
-                players.get(players.size() - player_size_aux.get()).setRole("Espião");
-                role_aux[0] = 4;
-            } else {
-                player_role.setText("Investigador");
-                // Set player role in the player class
-                players.get(players.size() - player_size_aux.get()).setRole("Investigador");
-                role_aux[0]--;
-            }
+            player_role.setText(roles.get(players.size() - player_size_aux.get()));
 
             // View that disappears
             role_title.setVisibility(android.view.View.INVISIBLE);
@@ -107,5 +102,25 @@ public class GameActivity extends AppCompatActivity {
             queque.setVisibility(Button.VISIBLE);
         });
 
+    }
+
+
+    // Function that give the roles randomly to the ArrayList of roles (1 Investigator for every 4 players)
+    public void giveRoles() {
+        for (int i = 0; i < players.size(); i++) {
+            if (i % 4 == 0) {
+                roles.add("Espião");
+            } else {
+                roles.add("Investigador");
+            }
+        }
+
+        // Shuffle the roles
+        for (int i = 0; i < roles.size(); i++) {
+            int random = (int) (Math.random() * roles.size());
+            String temp = roles.get(i);
+            roles.set(i, roles.get(random));
+            roles.set(random, temp);
+        }
     }
 }
