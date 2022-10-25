@@ -18,6 +18,7 @@ public class QueueActivity extends AppCompatActivity {
     TextView player_number;
     TextView player_name;
     TextView player_role;
+    TextView player_place;
     Button next_player;
 
     TextView role_title;
@@ -45,6 +46,7 @@ public class QueueActivity extends AppCompatActivity {
         player_number = findViewById(R.id.player_number);
         player_name = findViewById(R.id.player_name);
         player_role = findViewById(R.id.player_role);
+        player_place = findViewById(R.id.player_place);
         next_player = findViewById(R.id.next_player_btn);
 
         role_title = findViewById(R.id.role_title);
@@ -61,6 +63,8 @@ public class QueueActivity extends AppCompatActivity {
             // Change player_name to the current player name
             player_name.setText(players.get(players.size() - player_size_aux.get()).getName());
 
+            // FORGOT: Give the current player a location
+
             // Give role to the current player
             player_role.setText(roles.get(players.size() - player_size_aux.get()));
 
@@ -74,6 +78,7 @@ public class QueueActivity extends AppCompatActivity {
             player_number.setVisibility(android.view.View.VISIBLE);
             player_name.setVisibility(android.view.View.VISIBLE);
             player_role.setVisibility(android.view.View.VISIBLE);
+            player_place.setVisibility(android.view.View.VISIBLE);
             next_player.setVisibility(Button.VISIBLE);
 
             // Decrease the aux
@@ -94,6 +99,7 @@ public class QueueActivity extends AppCompatActivity {
             player_number.setVisibility(android.view.View.INVISIBLE);
             player_name.setVisibility(android.view.View.INVISIBLE);
             player_role.setVisibility(android.view.View.INVISIBLE);
+            player_place.setVisibility(android.view.View.INVISIBLE);
             next_player.setVisibility(Button.INVISIBLE);
 
             // View that appears

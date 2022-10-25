@@ -22,4 +22,5 @@
     <string name="exemplo_jogadores_resultado">Jogador1\nJogador2</string>
     <string name="novo_jogo_resultado">Novo Jogo</string>
     <string name="pagina_inicial_resultado">Página Inicial</string>
+    <string name="local">Local</string>
 </resources>

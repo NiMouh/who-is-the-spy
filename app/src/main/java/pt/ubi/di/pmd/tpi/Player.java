@@ -4,6 +4,7 @@ public class Player {
     // Create a class Player that has a name a role and a number
     private String name;
     private String role;
+    private String place;
 
     // Make a static variable that counts the number of players
     private static int number = 0;
@@ -44,5 +45,20 @@ public class Player {
 
     public void setNumber(int number) {
         this.number = number;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    // Create clone method
+    public Player clone() {
+        Player player = new Player(this.name, this.role);
+        player.setPlace(this.place);
+        return player;
     }
 }
