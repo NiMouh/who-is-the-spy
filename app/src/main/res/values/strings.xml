@@ -18,4 +18,8 @@
     <string name="prontoo">Pronto</string>
     <string name="role_subtitulo">Para continuar pressione o botão abaixo</string>
     <string name="role_titulo">PÁGINA DE ESPERA</string>
+    <string name="titulo_resultado">VENCEDORES!</string>
+    <string name="exemplo_jogadores_resultado">Jogador1\nJogador2</string>
+    <string name="novo_jogo_resultado">Novo Jogo</string>
+    <string name="pagina_inicial_resultado">Página Inicial</string>
 </resources>

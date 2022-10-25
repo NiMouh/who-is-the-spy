@@ -85,7 +85,7 @@ public class QueueActivity extends AppCompatActivity {
         next_player.setOnClickListener(v -> {
             // If the aux is 0, go to the next activity
             if (player_size_aux.get() == 0) {
-                Intent intent = new Intent(this, MainActivity.class);
+                Intent intent = new Intent(this, GameActivity.class);
                 startActivity(intent);
             }
 
