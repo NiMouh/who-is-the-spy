@@ -22,7 +22,7 @@ public class QueueActivity extends AppCompatActivity {
 
     TextView role_title;
     TextView role_subtitle;
-    Button queque;
+    Button queue;
 
     // Make an ArrayList of the roles
     ArrayList<String> roles = new ArrayList<>();
@@ -49,11 +49,11 @@ public class QueueActivity extends AppCompatActivity {
 
         role_title = findViewById(R.id.role_title);
         role_subtitle = findViewById(R.id.role_subtitle);
-        queque = findViewById(R.id.queque_btn);
+        queue = findViewById(R.id.queque_btn);
 
         // If the queue button is clicked, change visibility of the role title and subtitle, the queue button to invisible
         // player_title, player_number, player_name and player_role and the next player button to visible
-        queque.setOnClickListener(v -> {
+        queue.setOnClickListener(v -> {
 
             // Change player_number to the current player number
             player_number.setText((players.size() - player_size_aux.get() + 1) + "");
@@ -67,7 +67,7 @@ public class QueueActivity extends AppCompatActivity {
             // View that disappears
             role_title.setVisibility(android.view.View.INVISIBLE);
             role_subtitle.setVisibility(android.view.View.INVISIBLE);
-            queque.setVisibility(Button.INVISIBLE);
+            queue.setVisibility(Button.INVISIBLE);
 
             // View that appears
             player_title.setVisibility(android.view.View.VISIBLE);
@@ -99,7 +99,7 @@ public class QueueActivity extends AppCompatActivity {
             // View that appears
             role_title.setVisibility(android.view.View.VISIBLE);
             role_subtitle.setVisibility(android.view.View.VISIBLE);
-            queque.setVisibility(Button.VISIBLE);
+            queue.setVisibility(Button.VISIBLE);
         });
 
     }
