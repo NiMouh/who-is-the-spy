@@ -1,15 +1,12 @@
 package pt.ubi.di.pmd.tpi;
 
 import static pt.ubi.di.pmd.tpi.MainActivity.players;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class GameActivity extends AppCompatActivity {
@@ -99,7 +96,7 @@ public class GameActivity extends AppCompatActivity {
 
             // View that disappears
             player_title.setVisibility(android.view.View.INVISIBLE);
-            player_number.setVisibility(android.view.View.VISIBLE);
+            player_number.setVisibility(android.view.View.INVISIBLE);
             player_name.setVisibility(android.view.View.INVISIBLE);
             player_role.setVisibility(android.view.View.INVISIBLE);
             next_player.setVisibility(Button.INVISIBLE);

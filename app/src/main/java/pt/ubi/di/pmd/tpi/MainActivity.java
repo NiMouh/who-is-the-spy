@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 // Add the player to the ArrayList
                 players.add(new Player(player_name.getText().toString()));
+                // Add the player to the TextView
+                list_players.setText(list_players.getText() + "\n" + player_name.getText().toString());
+                // Clean the EditText
+                player_name.setText("");
             }
         });
 
