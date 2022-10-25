@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(findViewById(android.R.id.content), "Número de jogadores inválido", Snackbar.LENGTH_LONG).show();
             } else {
                 // If the number of players is valid, start the GameActivity
-                Intent intent = new Intent(this, GameActivity.class);
+                Intent intent = new Intent(this, QueueActivity.class);
                 startActivity(intent);
             }
         });

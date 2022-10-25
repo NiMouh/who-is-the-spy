@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class GameActivity extends AppCompatActivity {
+public class QueueActivity extends AppCompatActivity {
 
     // Declaration of button and text variables
     TextView player_title;
@@ -32,7 +32,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_queue);
 
         // Call the method that adds the roles to the ArrayList
         giveRoles();
