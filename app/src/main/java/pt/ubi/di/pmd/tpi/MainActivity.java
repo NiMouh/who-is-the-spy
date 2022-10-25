@@ -8,6 +8,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     TextView list_players;
 
     // Make an array list of players static so it can be accessed from other activities
-    public static ArrayList<String> players = new ArrayList<>();
+    public static ArrayList<Player> players = new ArrayList<>();
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -65,16 +66,15 @@ public class MainActivity extends AppCompatActivity {
             if (player_name.getText().toString().isEmpty()) {
                 Snackbar.make(findViewById(android.R.id.content), "Nome Vazio", Snackbar.LENGTH_LONG).show();
             } else {
-                // If the the name is already in the arrayList pop up an error
-                if (players.contains(player_name.getText().toString())) {
-                    Snackbar.make(findViewById(android.R.id.content), "Nome já existe", Snackbar.LENGTH_LONG).show();
-                } else {
-                    // If the name is valid, add it to the arrayList and add it to the TextView with a '\n'
-                    players.add(player_name.getText().toString());
-                    list_players.setText(list_players.getText() + "\n" + player_name.getText().toString());
-                    // And clear the EditText
-                    player_name.setText("");
+                // Run through every player on ArrayList, and If the the name is already in the ArrayList of players pop up an error
+                for (Player player : players) {
+                    if (player.getName().equals(player_name.getText().toString())) {
+                        Snackbar.make(findViewById(android.R.id.content), "Jogador já existe", Snackbar.LENGTH_LONG).show();
+                        return;
+                    }
                 }
+                // Add the player to the ArrayList
+                players.add(new Player(player_name.getText().toString()));
             }
         });
 

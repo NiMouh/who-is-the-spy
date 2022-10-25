@@ -40,24 +40,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
+        android:background="#8B5EDA"
         android:text="@string/jogar_jogo"
         android:textColor="#FFFFFF"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/exit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:background="#8B5EDA"
         android:text="@string/sair_jogo"
+        android:textColor="#FFFFFF"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@+id/play_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/play_btn"
+        tools:ignore="TextContrastCheck" />
 
     <EditText
         android:id="@+id/player1"
@@ -80,11 +85,14 @@
         android:layout_width="50dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:background="#8B5EDA"
         android:text="@string/adicionar"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.279"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player1" />
+        app:layout_constraintTop_toBottomOf="@+id/player1"
+        tools:ignore="TextContrastCheck" />
 
     <Button
         android:id="@+id/start_game_btn"
@@ -92,11 +100,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:background="#8B5EDA"
         android:text="@string/comecar"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.262"
+        app:layout_constraintHorizontal_bias="0.352"
         app:layout_constraintStart_toEndOf="@+id/add_player_btn"
-        app:layout_constraintTop_toBottomOf="@+id/player1" />
+        app:layout_constraintTop_toBottomOf="@+id/player1"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/lista_jogadores"

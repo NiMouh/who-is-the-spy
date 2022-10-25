@@ -9,4 +9,13 @@
     <string name="adiciona_jogador">Adicionar Jogador</string>
     <string name="adicionar_texto">Adicionar Texto</string>
     <string name="nome_dos_jogadores">Nome dos Jogadores:</string>
+    <string name="jogador_role_title">JOGADOR</string>
+    <string name="X_role_title">X</string>
+    <string name="proximo_role_btn">Próximo</string>
+    <string name="Nome_do_jogador">Nome do Jogador</string>
+    <string name="funcao">Função</string>
+    <string name="pronto" />
+    <string name="prontoo">Pronto</string>
+    <string name="role_subtitulo">Para continuar pressione o botão abaixo</string>
+    <string name="role_titulo">PÁGINA DE ESPERA</string>
 </resources>

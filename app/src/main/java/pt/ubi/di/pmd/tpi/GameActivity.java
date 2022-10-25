@@ -1,22 +1,114 @@
 package pt.ubi.di.pmd.tpi;
 
 import static pt.ubi.di.pmd.tpi.MainActivity.players;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class GameActivity extends AppCompatActivity {
 
+    // Declaration of button and text variables
+    TextView player_title;
+    TextView player_number;
+    TextView player_name;
+    TextView player_role;
+    Button next_player;
+
+    TextView role_title;
+    TextView role_subtitle;
+    Button queque;
+
+
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        // Get the TextView from the layout
-        TextView textView = findViewById(R.id.textView2);
+        // Make an aux to give the player roles (there is 1 investigator for every 4 players)
+        final int[] role_aux = {0};
 
-        // Set TextView to the first players Name
-        textView.setText(players.get(0));
+        // Make an aux with the number of the players, if that number comes to 0, go to the next activity
+        AtomicInteger player_size_aux = new AtomicInteger(players.size());
+
+        // Initialization of variables
+        player_title = findViewById(R.id.player_title);
+        player_number = findViewById(R.id.player_number);
+        player_name = findViewById(R.id.player_name);
+        player_role = findViewById(R.id.player_role);
+        next_player = findViewById(R.id.next_player_btn);
+
+        role_title = findViewById(R.id.role_title);
+        role_subtitle = findViewById(R.id.role_subtitle);
+        queque = findViewById(R.id.queque_btn);
+
+        // If the queue button is clicked, change visibility of the role title and subtitle, the queue button to invisible
+        // player_title, player_number, player_name and player_role and the next player button to visible
+        queque.setOnClickListener(v -> {
+
+            // Change player_number to the current player number
+            player_number.setText((players.size() - player_size_aux.get() + 1) + "");
+
+            // Change player_name to the current player name
+            player_name.setText(players.get(players.size() - player_size_aux.get()).getName());
+
+            // Give role to the current player
+            if (role_aux[0] == 0) {
+                player_role.setText("Espião");
+                // Set player role in the player class
+                players.get(players.size() - player_size_aux.get()).setRole("Espião");
+                role_aux[0] = 4;
+            } else {
+                player_role.setText("Investigador");
+                // Set player role in the player class
+                players.get(players.size() - player_size_aux.get()).setRole("Investigador");
+                role_aux[0]--;
+            }
+
+            // View that disappears
+            role_title.setVisibility(android.view.View.INVISIBLE);
+            role_subtitle.setVisibility(android.view.View.INVISIBLE);
+            queque.setVisibility(Button.INVISIBLE);
+
+            // View that appears
+            player_title.setVisibility(android.view.View.VISIBLE);
+            player_number.setVisibility(android.view.View.VISIBLE);
+            player_name.setVisibility(android.view.View.VISIBLE);
+            player_role.setVisibility(android.view.View.VISIBLE);
+            next_player.setVisibility(Button.VISIBLE);
+
+            // Decrease the aux
+            player_size_aux.getAndDecrement();
+        });
+
+        // If the next player button is clicked, change visibility of the player title, player number, player name and player role
+        // to invisible and the role title, role subtitle and the queue button to visible
+        next_player.setOnClickListener(v -> {
+            // If the aux is 0, go to the next activity
+            if (player_size_aux.get() == 0) {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            }
+
+            // View that disappears
+            player_title.setVisibility(android.view.View.INVISIBLE);
+            player_number.setVisibility(android.view.View.VISIBLE);
+            player_name.setVisibility(android.view.View.INVISIBLE);
+            player_role.setVisibility(android.view.View.INVISIBLE);
+            next_player.setVisibility(Button.INVISIBLE);
+
+            // View that appears
+            role_title.setVisibility(android.view.View.VISIBLE);
+            role_subtitle.setVisibility(android.view.View.VISIBLE);
+            queque.setVisibility(Button.VISIBLE);
+        });
+
     }
 }
