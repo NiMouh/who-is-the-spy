@@ -52,7 +52,7 @@ public class QueueActivity extends AppCompatActivity {
         queue = findViewById(R.id.queque_btn);
 
         // If the queue button is clicked, change visibility of the role title and subtitle, the queue button to invisible
-        // player_title, player_number, player_name and player_role and the next player button to visible
+        // player_title, player_number, player_name and player_role and the next player button to visible.
         queue.setOnClickListener(v -> {
 
             // Change player_number to the current player number
