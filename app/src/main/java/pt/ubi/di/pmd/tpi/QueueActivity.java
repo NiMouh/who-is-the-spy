@@ -10,7 +10,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class QueueActivity extends AppCompatActivity {
@@ -30,9 +39,6 @@ public class QueueActivity extends AppCompatActivity {
     // Make an ArrayList of the roles
     ArrayList<String> roles = new ArrayList<>();
 
-    // Make an ArrayList of the places (FIX: TODOS OS JOGADORES ESTÃO NO MESMO LOCAL)
-    ArrayList<String> places = new ArrayList<>();
-
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -42,7 +48,8 @@ public class QueueActivity extends AppCompatActivity {
 
         // Call the method that adds the roles to the ArrayList
         giveRoles();
-        // Call the method that adds the places to the ArrayList
+        // Declare the place where the players are
+        String place = givePlace();
 
         // Make an aux with the number of the players, if that number comes to 0, go to the next activity
         AtomicInteger player_size_aux = new AtomicInteger(players.size());
@@ -59,6 +66,9 @@ public class QueueActivity extends AppCompatActivity {
         role_subtitle = findViewById(R.id.role_subtitle);
         queue = findViewById(R.id.queque_btn);
 
+        // Set player_name to the name of the first player
+        player_name.setText(players.get(0).getName());
+
         // If the queue button is clicked, change visibility of the role title and subtitle, the queue button to invisible
         // player_title, player_number, player_name and player_role and the next player button to visible.
         queue.setOnClickListener(v -> {
@@ -73,25 +83,25 @@ public class QueueActivity extends AppCompatActivity {
             players.get(players.size() - player_size_aux.get()).setRole(roles.get(players.size() - player_size_aux.get()));
             player_role.setText(roles.get(players.size() - player_size_aux.get()));
 
-            // FORGOT: Give the current player a location
             if (players.get(players.size() - player_size_aux.get()).getRole().equals("Espião")) {
                 // If he's a spy then set place textView to "Descobre os outros locais"
                 player_place.setText("Descobre os outros locais");
             } else {
                 // If he's an investigator then set place textView to the given text
                 // And set player class place
-                System.out.println("Teste");
+                player_place.setText(place);
+                players.get(players.size() - player_size_aux.get()).setPlace(place);
             }
 
             // View that disappears
             role_title.setVisibility(android.view.View.INVISIBLE);
             role_subtitle.setVisibility(android.view.View.INVISIBLE);
+            player_name.setVisibility(android.view.View.INVISIBLE);
             queue.setVisibility(Button.INVISIBLE);
 
             // View that appears
             player_title.setVisibility(android.view.View.VISIBLE);
             player_number.setVisibility(android.view.View.VISIBLE);
-            player_name.setVisibility(android.view.View.VISIBLE);
             player_role.setVisibility(android.view.View.VISIBLE);
             player_place.setVisibility(android.view.View.VISIBLE);
             next_player.setVisibility(Button.VISIBLE);
@@ -112,7 +122,6 @@ public class QueueActivity extends AppCompatActivity {
             // View that disappears
             player_title.setVisibility(android.view.View.INVISIBLE);
             player_number.setVisibility(android.view.View.INVISIBLE);
-            player_name.setVisibility(android.view.View.INVISIBLE);
             player_role.setVisibility(android.view.View.INVISIBLE);
             player_place.setVisibility(android.view.View.INVISIBLE);
             next_player.setVisibility(Button.INVISIBLE);
@@ -120,6 +129,7 @@ public class QueueActivity extends AppCompatActivity {
             // View that appears
             role_title.setVisibility(android.view.View.VISIBLE);
             role_subtitle.setVisibility(android.view.View.VISIBLE);
+            player_name.setVisibility(android.view.View.VISIBLE);
             queue.setVisibility(Button.VISIBLE);
         });
 
@@ -145,7 +155,29 @@ public class QueueActivity extends AppCompatActivity {
         }
     }
 
-    // Function that gives the location randomly to the ArrayList of locations
-    // Open the .txt file
-    // Extract the content to the ArrayList and Pick a random location
+    // Function that opens a .txt file with the locations saves them in an array and returns one of them randomly
+    public String givePlace() {
+        // Read the file location.txt in the raw folder
+        InputStream inputStream = getResources().openRawResource(R.raw.location);
+        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+        // Make an ArrayList of the locations
+        ArrayList<String> places = new ArrayList<>();
+
+        // Read the file line by line and add it to the ArrayList
+        String line;
+
+        // Try to read the file
+        try {
+            while ((line = bufferedReader.readLine()) != null) {
+                places.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Return a random location
+        return places.get((int) (Math.random() * places.size()));
+    }
 }
