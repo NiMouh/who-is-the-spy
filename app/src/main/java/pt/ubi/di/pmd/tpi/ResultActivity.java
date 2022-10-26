@@ -3,6 +3,7 @@ package pt.ubi.di.pmd.tpi;
 import static pt.ubi.di.pmd.tpi.GameActivity.remainingPlayers;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -40,12 +41,16 @@ public class ResultActivity extends AppCompatActivity {
 
         // If the new game button is clicked, it will start a new game
         new_game.setOnClickListener(v -> {
-            // Start a new game
+            // Start a new game and go to the Queue Activity
+            Intent intent = new Intent(this, QueueActivity.class);
+            startActivity(intent);
         });
 
         // If the exit button is clicked, it will go to the main menu
         exit.setOnClickListener(v -> {
             // Go to the main menu
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         });
     }
 }
