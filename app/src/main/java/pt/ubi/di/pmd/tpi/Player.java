@@ -44,7 +44,7 @@ public class Player {
     }
 
     public void setNumber(int number) {
-        this.number = number;
+        Player.number = number;
     }
 
     public String getPlace() {
@@ -60,5 +60,11 @@ public class Player {
         Player player = new Player(this.name, this.role);
         player.setPlace(this.place);
         return player;
+    }
+
+    // Create toString method
+    @Override
+    public String toString() {
+        return "" + name;
     }
 }

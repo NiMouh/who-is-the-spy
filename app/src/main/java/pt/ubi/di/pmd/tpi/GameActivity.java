@@ -16,7 +16,7 @@ public class GameActivity extends AppCompatActivity {
     Button guess_btn;
 
     // Declare an ArrayList with the remaining players
-    private ArrayList<Player> remainingPlayers;
+    public static ArrayList<Player> remainingPlayers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +41,7 @@ public class GameActivity extends AppCompatActivity {
         next_player.setOnClickListener(v -> {
             // If the roundPlayers ArrayList is empty, it will show a reunion room
             if (roundPlayers.isEmpty()) {
-                // Show the reunion room
+                // Show the reunion room\
             } else {
                 // Show his name on the screen
                 // Choose the next player randomly in the roundPlayers ArrayList
