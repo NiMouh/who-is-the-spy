@@ -38,21 +38,6 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/player_name"
-        android:layout_width="243dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="32dp"
-        android:text="@string/Nome_do_jogador"
-        android:textAlignment="center"
-        android:textColor="#BFBFBF"
-        android:textSize="30sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player_title" />
-
-    <TextView
         android:id="@+id/player_role"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -96,7 +81,7 @@
         android:id="@+id/role_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="168dp"
+        android:layout_marginTop="108dp"
         android:fontFamily="monospace"
         android:text="@string/role_titulo"
         android:textAlignment="center"
@@ -108,25 +93,39 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/player_name"
+        android:layout_width="243dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="28dp"
+        android:text="@string/Nome_do_jogador"
+        android:textAlignment="center"
+        android:textColor="#BFBFBF"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/role_title" />
+
+    <TextView
         android:id="@+id/role_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="monospace"
         android:text="@string/role_subtitulo"
         android:textAlignment="center"
         android:textColor="#BFBBBB"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/role_title" />
+        app:layout_constraintTop_toBottomOf="@+id/player_name" />
 
     <Button
         android:id="@+id/queque_btn"
         android:layout_width="120dp"
         android:layout_height="59dp"
         android:layout_marginTop="52dp"
-        android:text="@string/prontoo"
+        android:text="@string/sou_eu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"

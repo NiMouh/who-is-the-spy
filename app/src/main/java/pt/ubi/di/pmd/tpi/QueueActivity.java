@@ -30,7 +30,8 @@ public class QueueActivity extends AppCompatActivity {
     // Make an ArrayList of the roles
     ArrayList<String> roles = new ArrayList<>();
 
-    //
+    // Make an ArrayList of the places (FIX: TODOS OS JOGADORES ESTÃO NO MESMO LOCAL)
+    ArrayList<String> places = new ArrayList<>();
 
 
     @SuppressLint("SetTextI18n")
@@ -41,6 +42,7 @@ public class QueueActivity extends AppCompatActivity {
 
         // Call the method that adds the roles to the ArrayList
         giveRoles();
+        // Call the method that adds the places to the ArrayList
 
         // Make an aux with the number of the players, if that number comes to 0, go to the next activity
         AtomicInteger player_size_aux = new AtomicInteger(players.size());
@@ -67,12 +69,19 @@ public class QueueActivity extends AppCompatActivity {
             // Change player_name to the current player name
             player_name.setText(players.get(players.size() - player_size_aux.get()).getName());
 
-            // FORGOT: Give the current player a location
-
             // Give role to the current player in the class
-            //
             players.get(players.size() - player_size_aux.get()).setRole(roles.get(players.size() - player_size_aux.get()));
             player_role.setText(roles.get(players.size() - player_size_aux.get()));
+
+            // FORGOT: Give the current player a location
+            if (players.get(players.size() - player_size_aux.get()).getRole().equals("Espião")) {
+                // If he's a spy then set place textView to "Descobre os outros locais"
+                player_place.setText("Descobre os outros locais");
+            } else {
+                // If he's an investigator then set place textView to the given text
+                // And set player class place
+                System.out.println("Teste");
+            }
 
             // View that disappears
             role_title.setVisibility(android.view.View.INVISIBLE);
@@ -137,4 +146,6 @@ public class QueueActivity extends AppCompatActivity {
     }
 
     // Function that gives the location randomly to the ArrayList of locations
+    // Open the .txt file
+    // Extract the content to the ArrayList and Pick a random location
 }
