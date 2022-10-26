@@ -1,11 +1,13 @@
 package pt.ubi.di.pmd.tpi;
 
 import static pt.ubi.di.pmd.tpi.MainActivity.players;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -27,6 +29,8 @@ public class QueueActivity extends AppCompatActivity {
 
     // Make an ArrayList of the roles
     ArrayList<String> roles = new ArrayList<>();
+
+    //
 
 
     @SuppressLint("SetTextI18n")
@@ -65,7 +69,9 @@ public class QueueActivity extends AppCompatActivity {
 
             // FORGOT: Give the current player a location
 
-            // Give role to the current player
+            // Give role to the current player in the class
+            //
+            players.get(players.size() - player_size_aux.get()).setRole(roles.get(players.size() - player_size_aux.get()));
             player_role.setText(roles.get(players.size() - player_size_aux.get()));
 
             // View that disappears
@@ -129,4 +135,6 @@ public class QueueActivity extends AppCompatActivity {
             roles.set(random, temp);
         }
     }
+
+    // Function that gives the location randomly to the ArrayList of locations
 }

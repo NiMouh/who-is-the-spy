@@ -9,6 +9,7 @@ public class Player {
     // Make a static variable that counts the number of players
     private static int number = 0;
 
+    //
     // Create a constructor for the class that increments the number of players
     public Player(String name, String role) {
         this.name = name;
