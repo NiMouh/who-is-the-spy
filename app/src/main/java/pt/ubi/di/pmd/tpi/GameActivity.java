@@ -85,6 +85,16 @@ public class GameActivity extends AppCompatActivity {
 
         // If the guess button is clicked then it will show the options of the locations for the player to guess
         guess_btn.setOnClickListener(v -> {
+            // Hide the title of turn
+            turn_title.setVisibility(TextView.INVISIBLE);
+            // Hide the name of the player
+            turn_player.setVisibility(TextView.INVISIBLE);
+            // Hide the guess button
+            guess_btn.setVisibility(Button.INVISIBLE);
+            // Hide the next player button
+            next_player.setVisibility(Button.INVISIBLE);
+
+
             // Get the locations
             ArrayList<String> locations = getLocations();
 
@@ -94,6 +104,12 @@ public class GameActivity extends AppCompatActivity {
             option3.setText(locations.get((int) (Math.random() * locations.size())));
             option4.setText(locations.get((int) (Math.random() * locations.size())));
             option5.setText(locations.get((int) (Math.random() * locations.size())));
+
+            // Show the title of the locations
+            local_title.setVisibility(TextView.VISIBLE);
+
+            // Show the button to guess the location
+            guess_location.setVisibility(Button.VISIBLE);
 
             // Show the options of the locations for the player to guess
             option1.setVisibility(CheckedTextView.VISIBLE);
@@ -124,6 +140,19 @@ public class GameActivity extends AppCompatActivity {
                     if (option1.isChecked() || option2.isChecked() || option3.isChecked() || option4.isChecked() || option5.isChecked()) {
                         // Remove him from the remaining players and the game continues
                         remainingPlayers.removeIf(player -> player.getName().contentEquals(turn_player.getText()));
+
+                        // Set visibility of the title of the locations to GONE
+                        local_title.setVisibility(CheckedTextView.GONE);
+
+                        // Set visibility of the this button to GONE
+                        guess_location.setVisibility(Button.GONE);
+
+                        // Set visibility of the options to GONE
+                        option1.setVisibility(CheckedTextView.GONE);
+                        option2.setVisibility(CheckedTextView.GONE);
+                        option3.setVisibility(CheckedTextView.GONE);
+                        option4.setVisibility(CheckedTextView.GONE);
+                        option5.setVisibility(CheckedTextView.GONE);
                     }
                 }
             }

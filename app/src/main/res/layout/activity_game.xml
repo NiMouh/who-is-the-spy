@@ -59,11 +59,12 @@
         android:id="@+id/local_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="436dp"
+        android:layout_marginTop="200dp"
         android:text="@string/escolha_local"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"/>
 
     <CheckedTextView
         android:id="@+id/option_1"
@@ -73,7 +74,8 @@
         android:text="@string/opcao_1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/local_title" />
+        app:layout_constraintTop_toBottomOf="@+id/local_title"
+        android:visibility="gone"/>
 
     <CheckedTextView
         android:id="@+id/option_2"
@@ -83,7 +85,8 @@
         android:text="@string/opcao_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_1" />
+        app:layout_constraintTop_toBottomOf="@+id/option_1"
+        android:visibility="gone"/>
 
     <CheckedTextView
         android:id="@+id/option_3"
@@ -93,7 +96,8 @@
         android:text="@string/opcao_3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_2" />
+        app:layout_constraintTop_toBottomOf="@+id/option_2"
+        android:visibility="gone"/>
 
     <CheckedTextView
         android:id="@+id/option_4"
@@ -103,7 +107,8 @@
         android:text="@string/opcao_4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_3" />
+        app:layout_constraintTop_toBottomOf="@+id/option_3"
+        android:visibility="gone"/>
 
     <CheckedTextView
         android:id="@+id/option_5"
@@ -113,7 +118,8 @@
         android:text="@string/opcao_5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_4" />
+        app:layout_constraintTop_toBottomOf="@+id/option_4"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/take_guess"
@@ -123,6 +129,7 @@
         android:text="@string/palpite"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_5" />
+        app:layout_constraintTop_toBottomOf="@+id/option_5"
+        android:visibility="gone"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
