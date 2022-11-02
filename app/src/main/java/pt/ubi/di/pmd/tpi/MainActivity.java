@@ -18,8 +18,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     // Declaration of the variables
-    Button start;
-    Button exit;
     Button add_player;
     Button play_game;
     TextView player_name;
@@ -35,30 +33,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initialization of variables
-        start = findViewById(R.id.play_btn);
-        exit = findViewById(R.id.exit_btn);
         add_player = findViewById(R.id.add_player_btn);
         play_game = findViewById(R.id.start_game_btn);
 
-        // Declaration of the EditText
-        player_name = findViewById(R.id.player1);
-
         // Declaration of the TextView with the players names
+        player_name = findViewById(R.id.player1);
         list_players = findViewById(R.id.lista_jogadores);
-
-        // If Start Game Button is pressed, show the add player button, the EditTexts and the
-        // start game button and hide the play button and the exit button
-        start.setOnClickListener(v -> {
-            start.setVisibility(Button.INVISIBLE);
-            exit.setVisibility(Button.INVISIBLE);
-            player_name.setVisibility(android.view.View.VISIBLE);
-            list_players.setVisibility(android.view.View.VISIBLE);
-            add_player.setVisibility(Button.VISIBLE);
-            play_game.setVisibility(Button.VISIBLE);
-        });
-
-        // If the Exit Button is pressed, close the app
-        exit.setOnClickListener(v -> finish());
 
         // If the player is added, add the name to the arrayList and add it to the TextView
         add_player.setOnClickListener(v -> {

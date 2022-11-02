@@ -5,21 +5,18 @@ import static pt.ubi.di.pmd.tpi.MainActivity.players;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class QueueActivity extends AppCompatActivity {
@@ -35,6 +32,8 @@ public class QueueActivity extends AppCompatActivity {
     TextView role_title;
     TextView role_subtitle;
     Button queue;
+
+    LinearLayout ll_player;
 
     // Make an ArrayList of the roles
     ArrayList<String> roles = new ArrayList<>();
@@ -66,6 +65,8 @@ public class QueueActivity extends AppCompatActivity {
         role_subtitle = findViewById(R.id.role_subtitle);
         queue = findViewById(R.id.queque_btn);
 
+        ll_player = findViewById(R.id.ll_player);
+
         // Set player_name to the name of the first player
         player_name.setText(players.get(0).getName());
 
@@ -94,16 +95,15 @@ public class QueueActivity extends AppCompatActivity {
             }
 
             // View that disappears
-            role_title.setVisibility(android.view.View.INVISIBLE);
-            role_subtitle.setVisibility(android.view.View.INVISIBLE);
-            player_name.setVisibility(android.view.View.INVISIBLE);
+            ll_player.setVisibility(View.VISIBLE);
+            player_name.setVisibility(View.INVISIBLE);
             queue.setVisibility(Button.INVISIBLE);
 
             // View that appears
-            player_title.setVisibility(android.view.View.VISIBLE);
-            player_number.setVisibility(android.view.View.VISIBLE);
-            player_role.setVisibility(android.view.View.VISIBLE);
-            player_place.setVisibility(android.view.View.VISIBLE);
+            player_title.setVisibility(View.VISIBLE);
+            player_number.setVisibility(View.VISIBLE);
+            player_role.setVisibility(View.VISIBLE);
+            player_place.setVisibility(View.VISIBLE);
             next_player.setVisibility(Button.VISIBLE);
 
             // Decrease the aux
@@ -120,16 +120,15 @@ public class QueueActivity extends AppCompatActivity {
             }
 
             // View that disappears
-            player_title.setVisibility(android.view.View.INVISIBLE);
-            player_number.setVisibility(android.view.View.INVISIBLE);
-            player_role.setVisibility(android.view.View.INVISIBLE);
-            player_place.setVisibility(android.view.View.INVISIBLE);
+            player_title.setVisibility(View.INVISIBLE);
+            player_number.setVisibility(View.INVISIBLE);
+            player_role.setVisibility(View.INVISIBLE);
+            player_place.setVisibility(View.INVISIBLE);
             next_player.setVisibility(Button.INVISIBLE);
 
             // View that appears
-            role_title.setVisibility(android.view.View.VISIBLE);
-            role_subtitle.setVisibility(android.view.View.VISIBLE);
-            player_name.setVisibility(android.view.View.VISIBLE);
+            ll_player.setVisibility(View.VISIBLE);
+            player_name.setVisibility(View.VISIBLE);
             queue.setVisibility(Button.VISIBLE);
         });
 
@@ -167,6 +166,8 @@ public class QueueActivity extends AppCompatActivity {
 
         // Read the file line by line and add it to the ArrayList
         String line;
+
+        // Fazer Shared Preferences
 
         // Try to read the file
         try {

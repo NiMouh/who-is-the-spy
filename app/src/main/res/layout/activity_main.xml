@@ -11,12 +11,13 @@
         android:id="@+id/imageView"
         android:layout_width="125dp"
         android:layout_height="160dp"
-        android:layout_marginTop="88dp"
         android:contentDescription="@string/icone"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.120000005"
         app:srcCompat="@drawable/spy" />
 
     <TextView
@@ -35,35 +36,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <Button
-        android:id="@+id/play_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:background="#8B5EDA"
-        android:text="@string/jogar_jogo"
-        android:textColor="#FFFFFF"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        tools:ignore="TextContrastCheck" />
-
-    <Button
-        android:id="@+id/exit_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="#8B5EDA"
-        android:text="@string/sair_jogo"
-        android:textColor="#FFFFFF"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/play_btn"
-        tools:ignore="TextContrastCheck" />
-
     <EditText
         android:id="@+id/player1"
         android:layout_width="209dp"
@@ -80,35 +52,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <Button
-        android:id="@+id/add_player_btn"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="#8B5EDA"
-        android:text="@string/adicionar"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.279"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player1"
-        tools:ignore="TextContrastCheck" />
-
-    <Button
-        android:id="@+id/start_game_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:background="#8B5EDA"
-        android:text="@string/comecar"
-        android:textColor="#FFFFFF"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.352"
-        app:layout_constraintStart_toEndOf="@+id/add_player_btn"
-        app:layout_constraintTop_toBottomOf="@+id/player1"
-        tools:ignore="TextContrastCheck" />
-
     <TextView
         android:id="@+id/lista_jogadores"
         android:layout_width="198dp"
@@ -121,5 +64,35 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/player1" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1">
+
+        <Button
+            android:id="@+id/add_player_btn"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="72dp"
+            android:background="#8B5EDA"
+            android:text="@string/adicionar"
+            android:textColor="#FFFFFF"
+            tools:ignore="ButtonStyle,TextContrastCheck" />
+
+        <Button
+            android:id="@+id/start_game_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#8B5EDA"
+            android:text="@string/comecar"
+            android:textColor="#FFFFFF"
+            tools:ignore="ButtonStyle,TextContrastCheck" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

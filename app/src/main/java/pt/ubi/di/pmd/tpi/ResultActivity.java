@@ -38,6 +38,8 @@ public class ResultActivity extends AppCompatActivity {
             win_names.setText(win_names.getText() + remainingPlayers.get(i).getName() + "\n");
         }
 
+        // Save the score in the scoreboard XML file (with player's names and roles)
+
 
         // If the new game button is clicked, it will start a new game
         new_game.setOnClickListener(v -> {

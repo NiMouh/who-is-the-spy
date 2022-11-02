@@ -83,6 +83,10 @@ public class GameActivity extends AppCompatActivity {
             }
         });
 
+        // If one of the buttons to kick a player is clicked
+        // Then the player gets off the remainingPlayers and roundPlayers ArrayList
+        // And the game continues
+
         // If the guess button is clicked then it will show the options of the locations for the player to guess
         guess_btn.setOnClickListener(v -> {
             // Hide the title of turn
