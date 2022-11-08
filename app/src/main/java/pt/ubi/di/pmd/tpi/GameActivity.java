@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -74,7 +75,7 @@ public class GameActivity extends AppCompatActivity {
         ll_guess_location = findViewById(R.id.ll_guess);
 
         // Declare an ArrayList with the round players and put them all the players in it
-        ArrayList<Player> roundPlayers = new ArrayList<>(players);
+        AtomicReference<ArrayList<Player>> roundPlayers = new AtomicReference<>(new ArrayList<>(players));
 
         // The game starts
         // It will choose the first player randomly in the roundPlayers ArrayList
@@ -83,7 +84,7 @@ public class GameActivity extends AppCompatActivity {
         // If the roundPlayers ArrayList is empty, it will show a reunion room
         next_player.setOnClickListener(v -> {
             // If the roundPlayers ArrayList is empty, it will show a reunion room
-            if (roundPlayers.isEmpty()) {
+            if (roundPlayers.get().isEmpty()) {
                 // Hide the turn
                 ll_turn.setVisibility(View.GONE);
 
@@ -93,11 +94,11 @@ public class GameActivity extends AppCompatActivity {
                 // (POR FAZER!) Reunion room
             } else {
                 // Get a player randomly from the roundPlayers ArrayList
-                Player current_player = roundPlayers.get((int) (Math.random() * roundPlayers.size()));
+                Player current_player = roundPlayers.get().get((int) (Math.random() * roundPlayers.get().size()));
                 // Show his name on the screen
                 turn_player.setText(current_player.getName());
                 // And remove him from the ArrayList
-                roundPlayers.remove(current_player);
+                roundPlayers.get().remove(current_player);
             }
         });
 
@@ -156,7 +157,8 @@ public class GameActivity extends AppCompatActivity {
                         option4.setChecked(false);
                         option5.setChecked(false);
 
-                        // Reset the roundPlayers ArrayList (POR FAZER!)
+                        // Click the next player button
+                        next_player.performClick();
 
                         // Hide the guess location screen
                         ll_guess_location.setVisibility(LinearLayout.GONE);
