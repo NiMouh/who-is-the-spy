@@ -8,132 +8,121 @@
 
     <LinearLayout
         android:id="@+id/ll_player"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:layout_width="295dp"
+        android:layout_height="614dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.20"
         android:visibility="gone">
 
-        <TextView
-            android:id="@+id/player_title"
+        <LinearLayout
+            android:id="@+id/ll_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="monospace"
-            android:text="@string/jogador_role_title"
-            android:textAlignment="textStart"
-            android:textColor="#FFFFFF"
-            android:textSize="40sp"
-            android:visibility="visible" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/player_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:text="@string/jogador_role_title"
+                android:textAlignment="textStart"
+                android:textColor="#FFFFFF"
+                android:textSize="40sp"/>
+
+            <TextView
+                android:id="@+id/player_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10sp"
+                android:fontFamily="monospace"
+                android:text="@string/X_role_title"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="40sp"/>
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/player_number"
+            android:id="@+id/player_role"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10sp"
-            android:fontFamily="monospace"
-            android:text="@string/X_role_title"
+            android:layout_marginTop="38dp"
+            android:text="@string/funcao"
             android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="40sp"
-            android:visibility="visible" />
+            android:textColor="#BD97FF"
+            android:textSize="26sp"/>
+
+        <TextView
+            android:id="@+id/player_place"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/local"
+            android:textColor="#FFEB3B"
+            android:textSize="22sp"/>
+
+        <Button
+            android:id="@+id/next_player_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="@string/proximo_role_btn"/>
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/player_role"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="38dp"
-        android:text="@string/funcao"
-        android:textAlignment="center"
-        android:textColor="#BD97FF"
-        android:textSize="26sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_player" />
-
-    <TextView
-        android:id="@+id/player_place"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="@string/local"
-        android:textColor="#FFEB3B"
-        android:textSize="22sp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player_role" />
-
-    <Button
-        android:id="@+id/next_player_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/proximo_role_btn"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player_place" />
-
-    <TextView
-        android:id="@+id/role_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="monospace"
-        android:text="@string/role_titulo"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
+    <LinearLayout
+        android:id="@+id/ll_role"
+        android:layout_width="347dp"
+        android:layout_height="708dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19999999"/>
+        android:visibility="visible">
 
-    <TextView
-        android:id="@+id/player_name"
-        android:layout_width="243dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="28dp"
-        android:text="@string/Nome_do_jogador"
-        android:textAlignment="center"
-        android:textColor="#BFBFBF"
-        android:textSize="30sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/role_title"/>
+        <TextView
+            android:id="@+id/role_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@string/role_titulo"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/role_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:fontFamily="monospace"
-        android:text="@string/role_subtitulo"
-        android:textAlignment="center"
-        android:textColor="#BFBBBB"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player_name"/>
+        <TextView
+            android:id="@+id/player_name"
+            android:layout_width="243dp"
+            android:layout_height="44dp"
+            android:layout_marginTop="28dp"
+            android:text="@string/Nome_do_jogador"
+            android:textAlignment="center"
+            android:textColor="#BFBFBF"
+            android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/queque_btn"
-        android:layout_width="120dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="52dp"
-        android:text="@string/sou_eu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/role_subtitle"/>
+        <TextView
+            android:id="@+id/role_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="monospace"
+            android:text="@string/role_subtitulo"
+            android:textAlignment="center"
+            android:textColor="#BFBBBB"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/queque_btn"
+            android:layout_width="120dp"
+            android:layout_height="59dp"
+            android:layout_marginTop="52dp"
+            android:text="@string/sou_eu" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

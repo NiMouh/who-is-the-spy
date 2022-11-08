@@ -6,133 +6,128 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+    <LinearLayout
+        android:id="@+id/ll_turn"
+        android:layout_width="318dp"
+        android:layout_height="759dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/turn_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tua_vez"
+            android:textColor="#000000"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/turn_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="44dp"
+            android:text="@string/Nome_do_jogador"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/next_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            android:text="@string/pergunta_feita" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/guess_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginTop="4dp"
         android:background="#3F484C"
         android:text="@string/palpite"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.97"
+        app:layout_constraintHorizontal_bias="0.854"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.97"
+        app:layout_constraintTop_toBottomOf="@+id/ll_turn"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
-    <Button
-        android:id="@+id/next_player"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:text="@string/pergunta_feita"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/turn_player" />
-
-    <TextView
-        android:id="@+id/turn_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tua_vez"
-        android:textColor="#000000"
-        android:textSize="30sp"
+    <LinearLayout
+        android:id="@+id/ll_guess"
+        android:layout_width="307dp"
+        android:layout_height="710dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.32" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/turn_player"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:text="@string/Nome_do_jogador"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/turn_title" />
+        <TextView
+            android:id="@+id/local_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/escolha_local" />
 
-    <TextView
-        android:id="@+id/local_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="@string/escolha_local"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"/>
+        <CheckedTextView
+            android:id="@+id/option_1"
+            android:layout_width="142dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="40dp"
+            android:text="@string/opcao_1" />
 
-    <CheckedTextView
-        android:id="@+id/option_1"
-        android:layout_width="142dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/opcao_1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/local_title"
-        android:visibility="gone"/>
+        <CheckedTextView
+            android:id="@+id/option_2"
+            android:layout_width="142dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/opcao_2" />
 
-    <CheckedTextView
-        android:id="@+id/option_2"
-        android:layout_width="142dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/opcao_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_1"
-        android:visibility="gone"/>
+        <CheckedTextView
+            android:id="@+id/option_3"
+            android:layout_width="142dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/opcao_3" />
 
-    <CheckedTextView
-        android:id="@+id/option_3"
-        android:layout_width="142dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/opcao_3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_2"
-        android:visibility="gone"/>
+        <CheckedTextView
+            android:id="@+id/option_4"
+            android:layout_width="142dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/opcao_4" />
 
-    <CheckedTextView
-        android:id="@+id/option_4"
-        android:layout_width="142dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/opcao_4"
+        <CheckedTextView
+            android:id="@+id/option_5"
+            android:layout_width="142dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:text="@string/opcao_5" />
+
+        <Button
+            android:id="@+id/take_guess"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="@string/palpite" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_reunion"
+        android:layout_width="358dp"
+        android:layout_height="771dp"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_3"
-        android:visibility="gone"/>
-
-    <CheckedTextView
-        android:id="@+id/option_5"
-        android:layout_width="142dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="20dp"
-        android:text="@string/opcao_5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_4"
-        android:visibility="gone"/>
-
-    <Button
-        android:id="@+id/take_guess"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:text="@string/palpite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/option_5"
-        android:visibility="gone"/>
+        app:layout_constraintTop_toTopOf="parent"></LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

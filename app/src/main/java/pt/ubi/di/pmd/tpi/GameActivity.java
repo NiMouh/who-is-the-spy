@@ -4,8 +4,10 @@ import static pt.ubi.di.pmd.tpi.MainActivity.players;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckedTextView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,14 +26,20 @@ public class GameActivity extends AppCompatActivity {
     Button next_player;
     Button guess_btn;
     Button guess_location;
-    TextView turn_title;
+
     TextView turn_player;
-    TextView local_title;
+
     CheckedTextView option1;
     CheckedTextView option2;
     CheckedTextView option3;
     CheckedTextView option4;
     CheckedTextView option5;
+
+
+    // Declaration of LinearLayouts
+    LinearLayout ll_turn;
+    LinearLayout ll_reunion;
+    LinearLayout ll_guess_location;
 
     // Declare an ArrayList with the remaining players
     public static ArrayList<Player> remainingPlayers;
@@ -50,9 +58,7 @@ public class GameActivity extends AppCompatActivity {
         guess_location = findViewById(R.id.take_guess);
 
         // Initialize the text views
-        turn_title = findViewById(R.id.turn_title);
         turn_player = findViewById(R.id.turn_player);
-        local_title = findViewById(R.id.local_title);
 
         // Initialize the checked text views
         option1 = findViewById(R.id.option_1);
@@ -60,6 +66,12 @@ public class GameActivity extends AppCompatActivity {
         option3 = findViewById(R.id.option_3);
         option4 = findViewById(R.id.option_4);
         option5 = findViewById(R.id.option_5);
+
+
+        // Initialize the LinearLayouts
+        ll_turn = findViewById(R.id.ll_turn);
+        ll_reunion = findViewById(R.id.ll_reunion);
+        ll_guess_location = findViewById(R.id.ll_guess);
 
         // Declare an ArrayList with the round players and put them all the players in it
         ArrayList<Player> roundPlayers = new ArrayList<>(players);
@@ -72,7 +84,13 @@ public class GameActivity extends AppCompatActivity {
         next_player.setOnClickListener(v -> {
             // If the roundPlayers ArrayList is empty, it will show a reunion room
             if (roundPlayers.isEmpty()) {
-                // Show the reunion room (POR FAZER)
+                // Hide the turn
+                ll_turn.setVisibility(View.GONE);
+
+                // Show the reunion room
+                ll_reunion.setVisibility(View.VISIBLE);
+
+                // (POR FAZER!) Reunion room
             } else {
                 // Get a player randomly from the roundPlayers ArrayList
                 Player current_player = roundPlayers.get((int) (Math.random() * roundPlayers.size()));
@@ -89,14 +107,10 @@ public class GameActivity extends AppCompatActivity {
 
         // If the guess button is clicked then it will show the options of the locations for the player to guess
         guess_btn.setOnClickListener(v -> {
-            // Hide the title of turn
-            turn_title.setVisibility(TextView.INVISIBLE);
-            // Hide the name of the player
-            turn_player.setVisibility(TextView.INVISIBLE);
+            // Hide the turn
+            ll_turn.setVisibility(LinearLayout.GONE);
             // Hide the guess button
             guess_btn.setVisibility(Button.INVISIBLE);
-            // Hide the next player button
-            next_player.setVisibility(Button.INVISIBLE);
 
 
             // Get the locations
@@ -109,18 +123,8 @@ public class GameActivity extends AppCompatActivity {
             option4.setText(locations.get((int) (Math.random() * locations.size())));
             option5.setText(locations.get((int) (Math.random() * locations.size())));
 
-            // Show the title of the locations
-            local_title.setVisibility(TextView.VISIBLE);
-
-            // Show the button to guess the location
-            guess_location.setVisibility(Button.VISIBLE);
-
-            // Show the options of the locations for the player to guess
-            option1.setVisibility(CheckedTextView.VISIBLE);
-            option2.setVisibility(CheckedTextView.VISIBLE);
-            option3.setVisibility(CheckedTextView.VISIBLE);
-            option4.setVisibility(CheckedTextView.VISIBLE);
-            option5.setVisibility(CheckedTextView.VISIBLE);
+            // Show the guess location screen
+            ll_guess_location.setVisibility(LinearLayout.VISIBLE);
         });
 
         // If the guess location button is clicked then it will check if the player only selected one option and if it is the correct one
@@ -145,25 +149,27 @@ public class GameActivity extends AppCompatActivity {
                         // Remove him from the remaining players and the game continues
                         remainingPlayers.removeIf(player -> player.getName().contentEquals(turn_player.getText()));
 
-                        // Set visibility of the title of the locations to GONE
-                        local_title.setVisibility(CheckedTextView.GONE);
+                        // Reset the CheckTextViews
+                        option1.setChecked(false);
+                        option2.setChecked(false);
+                        option3.setChecked(false);
+                        option4.setChecked(false);
+                        option5.setChecked(false);
 
-                        // Set visibility of the this button to GONE
-                        guess_location.setVisibility(Button.GONE);
+                        // Reset the roundPlayers ArrayList (POR FAZER!)
 
-                        // Set visibility of the options to GONE
-                        option1.setVisibility(CheckedTextView.GONE);
-                        option2.setVisibility(CheckedTextView.GONE);
-                        option3.setVisibility(CheckedTextView.GONE);
-                        option4.setVisibility(CheckedTextView.GONE);
-                        option5.setVisibility(CheckedTextView.GONE);
+                        // Hide the guess location screen
+                        ll_guess_location.setVisibility(LinearLayout.GONE);
+
+                        // Show the turn
+                        ll_turn.setVisibility(LinearLayout.VISIBLE);
                     }
                 }
             }
         });
     }
 
-    // Make a function to get the locations, return an ArrayList with the locations
+    // Function to get the locations, return an ArrayList with the locations
     public ArrayList<String> getLocations() {
         // Read the file location.txt in the raw folder
         InputStream inputStream = getResources().openRawResource(R.raw.location);

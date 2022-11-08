@@ -22,18 +22,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class QueueActivity extends AppCompatActivity {
 
     // Declaration of button and text variables
-    TextView player_title;
     TextView player_number;
     TextView player_name;
     TextView player_role;
     TextView player_place;
-    Button next_player;
 
-    TextView role_title;
-    TextView role_subtitle;
+    Button next_player;
     Button queue;
 
     LinearLayout ll_player;
+    LinearLayout ll_role;
 
     // Make an ArrayList of the roles
     ArrayList<String> roles = new ArrayList<>();
@@ -54,18 +52,18 @@ public class QueueActivity extends AppCompatActivity {
         AtomicInteger player_size_aux = new AtomicInteger(players.size());
 
         // Initialization of variables
-        player_title = findViewById(R.id.player_title);
         player_number = findViewById(R.id.player_number);
         player_name = findViewById(R.id.player_name);
         player_role = findViewById(R.id.player_role);
         player_place = findViewById(R.id.player_place);
-        next_player = findViewById(R.id.next_player_btn);
 
-        role_title = findViewById(R.id.role_title);
-        role_subtitle = findViewById(R.id.role_subtitle);
+        // Initialize of buttons
+        next_player = findViewById(R.id.next_player_btn);
         queue = findViewById(R.id.queque_btn);
 
+        // Set Queue Activity Scenarios
         ll_player = findViewById(R.id.ll_player);
+        ll_role = findViewById(R.id.ll_role);
 
         // Set player_name to the name of the first player
         player_name.setText(players.get(0).getName());
@@ -94,17 +92,11 @@ public class QueueActivity extends AppCompatActivity {
                 players.get(players.size() - player_size_aux.get()).setPlace(place);
             }
 
-            // View that disappears
-            ll_player.setVisibility(View.VISIBLE);
-            player_name.setVisibility(View.INVISIBLE);
-            queue.setVisibility(Button.INVISIBLE);
-
             // View that appears
-            player_title.setVisibility(View.VISIBLE);
-            player_number.setVisibility(View.VISIBLE);
-            player_role.setVisibility(View.VISIBLE);
-            player_place.setVisibility(View.VISIBLE);
-            next_player.setVisibility(Button.VISIBLE);
+            ll_player.setVisibility(View.VISIBLE);
+
+            // View that disappears
+            ll_role.setVisibility(View.INVISIBLE);
 
             // Decrease the aux
             player_size_aux.getAndDecrement();
@@ -120,16 +112,10 @@ public class QueueActivity extends AppCompatActivity {
             }
 
             // View that disappears
-            player_title.setVisibility(View.INVISIBLE);
-            player_number.setVisibility(View.INVISIBLE);
-            player_role.setVisibility(View.INVISIBLE);
-            player_place.setVisibility(View.INVISIBLE);
-            next_player.setVisibility(Button.INVISIBLE);
+            ll_player.setVisibility(View.INVISIBLE);
 
             // View that appears
-            ll_player.setVisibility(View.VISIBLE);
-            player_name.setVisibility(View.VISIBLE);
-            queue.setVisibility(Button.VISIBLE);
+            ll_role.setVisibility(View.VISIBLE);
         });
 
     }
@@ -156,7 +142,7 @@ public class QueueActivity extends AppCompatActivity {
 
     // Function that opens a .txt file with the locations saves them in an array and returns one of them randomly
     public String givePlace() {
-        // Read the file location.txt in the raw folder
+        // Read the file location.xml in the raw folder
         InputStream inputStream = getResources().openRawResource(R.raw.location);
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);

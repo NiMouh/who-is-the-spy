@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Make the title of scoreboard -->
+<score>
+    <player_role>Player</player_role>
+    <player_names>Names</player_names>
+</score>
