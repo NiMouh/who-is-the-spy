@@ -95,6 +95,9 @@ public class GameActivity extends AppCompatActivity {
                 // Hide the turn
                 ll_turn.setVisibility(View.GONE);
 
+                // Hide the guess button
+                guess_btn.setVisibility(View.GONE);
+
                 // Show the reunion room
                 ll_reunion.setVisibility(View.VISIBLE);
 
@@ -137,6 +140,9 @@ public class GameActivity extends AppCompatActivity {
 
             // Show the turn
             ll_turn.setVisibility(View.VISIBLE);
+
+            // Show the guess button
+            guess_btn.setVisibility(View.VISIBLE);
         });
 
         // If the guess button is clicked then it will show the options of the locations for the player to guess

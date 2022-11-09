@@ -12,11 +12,11 @@
         android:layout_height="614dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/ll_title"
@@ -32,7 +32,7 @@
                 android:text="@string/jogador_role_title"
                 android:textAlignment="textStart"
                 android:textColor="#FFFFFF"
-                android:textSize="40sp"/>
+                android:textSize="40sp" />
 
             <TextView
                 android:id="@+id/player_number"
@@ -43,7 +43,7 @@
                 android:text="@string/X_role_title"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="40sp"/>
+                android:textSize="40sp" />
         </LinearLayout>
 
         <TextView
@@ -54,7 +54,7 @@
             android:text="@string/funcao"
             android:textAlignment="center"
             android:textColor="#BD97FF"
-            android:textSize="26sp"/>
+            android:textSize="26sp" />
 
         <TextView
             android:id="@+id/player_place"
@@ -63,14 +63,14 @@
             android:layout_marginTop="32dp"
             android:text="@string/local"
             android:textColor="#FFEB3B"
-            android:textSize="22sp"/>
+            android:textSize="22sp" />
 
         <Button
             android:id="@+id/next_player_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
-            android:text="@string/proximo_role_btn"/>
+            android:text="@string/proximo_role_btn" />
 
     </LinearLayout>
 
@@ -80,11 +80,11 @@
         android:layout_height="708dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:visibility="visible">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/role_title"

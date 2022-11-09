@@ -68,55 +68,56 @@ public class QueueActivity extends AppCompatActivity {
         // Set player_name to the name of the first player
         player_name.setText(players.get(0).getName());
 
-        // If the queue button is clicked, change visibility of the role title and subtitle, the queue button to invisible
-        // player_title, player_number, player_name and player_role and the next player button to visible.
+        // If the queue button is clicked, it will show the role of the player
         queue.setOnClickListener(v -> {
-
-            // Change player_number to the current player number
+            // Change the player's number to the current player
             player_number.setText((players.size() - player_size_aux.get() + 1) + "");
 
-            // Change player_name to the current player name
-            player_name.setText(players.get(players.size() - player_size_aux.get()).getName());
-
-            // Give role to the current player in the class
-            players.get(players.size() - player_size_aux.get()).setRole(roles.get(players.size() - player_size_aux.get()));
+            // Change the player's role to the current player
             player_role.setText(roles.get(players.size() - player_size_aux.get()));
 
+            // Give that player the role of the current player
+            players.get(players.size() - player_size_aux.get()).setRole(roles.get(players.size() - player_size_aux.get()));
+
+            // Change the player's place to the current player
+            // If the player have the role "Espião" then the place is "Descobre os outros locais" else give the place
             if (players.get(players.size() - player_size_aux.get()).getRole().equals("Espião")) {
-                // If he's a spy then set place textView to "Descobre os outros locais"
                 player_place.setText("Descobre os outros locais");
             } else {
-                // If he's an investigator then set place textView to the given text
-                // And set player class place
                 player_place.setText(place);
                 players.get(players.size() - player_size_aux.get()).setPlace(place);
             }
 
-            // View that appears
+            // Change the visibility of the player's name and role to visible
             ll_player.setVisibility(View.VISIBLE);
 
-            // View that disappears
+            // Change the visibility of the player's place to invisible
             ll_role.setVisibility(View.INVISIBLE);
-
-            // Decrease the aux
-            player_size_aux.getAndDecrement();
         });
 
         // If the next player button is clicked, change visibility of the player title, player number, player name and player role
         // to invisible and the role title, role subtitle and the queue button to visible
         next_player.setOnClickListener(v -> {
+
             // If the aux is 0, go to the next activity
             if (player_size_aux.get() == 0) {
                 Intent intent = new Intent(this, GameActivity.class);
                 startActivity(intent);
             }
 
+            // Change player_name to the current player name
+            player_name.setText(players.get(players.size() - player_size_aux.get()).getName());
+
             // View that disappears
             ll_player.setVisibility(View.INVISIBLE);
 
             // View that appears
             ll_role.setVisibility(View.VISIBLE);
+
+            // Decrease the aux
+            player_size_aux.getAndDecrement();
         });
+        // ERRO ONDE O ULTIMO JOGADOR NAO APARECE E NAO VAI PARA A PROXIMA ACTIVITY
 
     }
 
@@ -153,12 +154,14 @@ public class QueueActivity extends AppCompatActivity {
         // Read the file line by line and add it to the ArrayList
         String line;
 
-        // Fazer Shared Preferences
+        // Fazer Shared Preferences (???)
 
-        // Try to read the file
+        // Try to read the file (if the line is "<resources>" or "</resources>" then don't add it to the ArrayList)
         try {
             while ((line = bufferedReader.readLine()) != null) {
-                places.add(line);
+                if (!line.equals("<resources>") && !line.equals("</resources>")) {
+                    places.add(line);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
