@@ -49,7 +49,7 @@ public class QueueActivity extends AppCompatActivity {
         String place = givePlace();
 
         // Make an aux with the number of the players, if that number comes to 0, go to the next activity
-        AtomicInteger player_size_aux = new AtomicInteger(players.size());
+        AtomicInteger player_size_aux = new AtomicInteger(players.size() - 1);
 
         // Initialization of variables
         player_number = findViewById(R.id.player_number);
@@ -66,12 +66,12 @@ public class QueueActivity extends AppCompatActivity {
         ll_role = findViewById(R.id.ll_role);
 
         // Set player_name to the name of the first player
-        player_name.setText(players.get(0).getName());
+        player_name.setText(players.get(players.size() - player_size_aux.get()).getName());
 
         // If the queue button is clicked, it will show the role of the player
         queue.setOnClickListener(v -> {
             // Change the player's number to the current player
-            player_number.setText((players.size() - player_size_aux.get() + 1) + "");
+            player_number.setText((players.size() - player_size_aux.get() - 1) + "");
 
             // Change the player's role to the current player
             player_role.setText(roles.get(players.size() - player_size_aux.get()));
@@ -157,9 +157,10 @@ public class QueueActivity extends AppCompatActivity {
         // Fazer Shared Preferences (???)
 
         // Try to read the file (if the line is "<resources>" or "</resources>" then don't add it to the ArrayList)
+        // Neither "<?xml version="1.0" encoding="utf-8"?>"
         try {
             while ((line = bufferedReader.readLine()) != null) {
-                if (!line.equals("<resources>") && !line.equals("</resources>")) {
+                if (!line.equals("<resources>") && !line.equals("</resources>") && !line.equals("<?xml version=\"1.0\" encoding=\"utf-8\"?>")) {
                     places.add(line);
                 }
             }
