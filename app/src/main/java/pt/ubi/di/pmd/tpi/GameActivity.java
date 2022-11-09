@@ -27,8 +27,12 @@ public class GameActivity extends AppCompatActivity {
     Button next_player;
     Button guess_btn;
     Button guess_location;
+    Button submit_num;
 
+    // Declaration of EditTexts
+    TextView insert_num;
     TextView turn_player;
+    TextView reunion_players;
 
     CheckedTextView option1;
     CheckedTextView option2;
@@ -57,9 +61,12 @@ public class GameActivity extends AppCompatActivity {
         next_player = findViewById(R.id.next_player);
         guess_btn = findViewById(R.id.guess_btn);
         guess_location = findViewById(R.id.take_guess);
+        submit_num = findViewById(R.id.submit_num);
 
         // Initialize the text views
         turn_player = findViewById(R.id.turn_player);
+        insert_num = findViewById(R.id.insert_num);
+        reunion_players = findViewById(R.id.reunion_players);
 
         // Initialize the checked text views
         option1 = findViewById(R.id.option_1);
@@ -91,7 +98,10 @@ public class GameActivity extends AppCompatActivity {
                 // Show the reunion room
                 ll_reunion.setVisibility(View.VISIBLE);
 
-                // (POR FAZER!) Reunion room
+                // Insert the remaining players in reunion_players text view + the number of each player
+                for (int i = 0; i < remainingPlayers.size(); i++) {
+                    reunion_players.append(remainingPlayers.get(i).getName() + " - " + remainingPlayers.get(i).getNumber() + "\n");
+                }
             } else {
                 // Get a player randomly from the roundPlayers ArrayList
                 Player current_player = roundPlayers.get().get((int) (Math.random() * roundPlayers.get().size()));
@@ -105,6 +115,29 @@ public class GameActivity extends AppCompatActivity {
         // If one of the buttons to kick a player is clicked
         // Then the player gets off the remainingPlayers and roundPlayers ArrayList
         // And the game continues
+        submit_num.setOnClickListener(v -> {
+            // Get the number that the player inserted
+            int num = Integer.parseInt(insert_num.getText().toString());
+
+            // Check if the number is in the remainingPlayers ArrayList, if it is, remove the player from the ArrayList
+            if (remainingPlayers.stream().anyMatch(player -> player.getNumber() == num)) {
+                remainingPlayers.removeIf(player -> player.getNumber() == num);
+                roundPlayers.get().removeIf(player -> player.getNumber() == num);
+                Snackbar.make(v, "Player kicked", Snackbar.LENGTH_SHORT).show();
+            } else {
+                // If not show an error message
+                Snackbar.make(v, "Player not found", Snackbar.LENGTH_SHORT).show();
+            }
+
+            // Hide the reunion room
+            ll_reunion.setVisibility(View.GONE);
+
+            // Reset Round Players
+            roundPlayers.set(new ArrayList<>(remainingPlayers));
+
+            // Show the turn
+            ll_turn.setVisibility(View.VISIBLE);
+        });
 
         // If the guess button is clicked then it will show the options of the locations for the player to guess
         guess_btn.setOnClickListener(v -> {
