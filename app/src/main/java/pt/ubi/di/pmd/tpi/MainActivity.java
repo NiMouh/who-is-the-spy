@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
     TextView player_name;
     TextView list_players;
 
+    // Declaration of the max number of players and min number of players
+    int max_players = 10;
+    int min_players = 5;
+
     // Make an array list of players static so it can be accessed from other activities
     public static ArrayList<Player> players = new ArrayList<>();
 
@@ -65,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         // If the Start Game Button is pressed, start the GameActivity
         play_game.setOnClickListener(v -> {
             // If there are less than 5 player and more than 10 players pop up an error
-            if (players.size() < 5 || players.size() > 10) {
+            if (players.size() < min_players || players.size() > max_players) {
                 Snackbar.make(findViewById(android.R.id.content), "Número de jogadores inválido", Snackbar.LENGTH_LONG).show();
             } else {
                 // If the number of players is valid, start the GameActivity

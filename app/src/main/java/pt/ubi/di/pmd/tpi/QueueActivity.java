@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -37,6 +38,10 @@ public class QueueActivity extends AppCompatActivity {
     ArrayList<String> roles = new ArrayList<>();
 
 
+    // Make a aux with the number of players
+    int aux = players.size();
+
+
     @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +52,6 @@ public class QueueActivity extends AppCompatActivity {
         giveRoles();
         // Declare the place where the players are
         String place = givePlace();
-
-        // Make an aux with the number of the players, if that number comes to 0, go to the next activity
-        AtomicInteger player_size_aux = new AtomicInteger(players.size() - 1);
 
         // Initialization of variables
         player_number = findViewById(R.id.player_number);
@@ -66,26 +68,26 @@ public class QueueActivity extends AppCompatActivity {
         ll_role = findViewById(R.id.ll_role);
 
         // Set player_name to the name of the first player
-        player_name.setText(players.get(players.size() - player_size_aux.get()).getName());
+        player_name.setText(players.get(players.size() - aux).getName());
 
         // If the queue button is clicked, it will show the role of the player
         queue.setOnClickListener(v -> {
             // Change the player's number to the current player
-            player_number.setText((players.size() - player_size_aux.get() - 1) + "");
+            player_number.setText((players.size() - aux + 1) + "");
 
             // Change the player's role to the current player
-            player_role.setText(roles.get(players.size() - player_size_aux.get()));
+            player_role.setText(roles.get(players.size() - aux));
 
             // Give that player the role of the current player
-            players.get(players.size() - player_size_aux.get()).setRole(roles.get(players.size() - player_size_aux.get()));
+            players.get(players.size() - aux).setRole(roles.get(players.size() - aux));
 
             // Change the player's place to the current player
             // If the player have the role "Espião" then the place is "Descobre os outros locais" else give the place
-            if (players.get(players.size() - player_size_aux.get()).getRole().equals("Espião")) {
+            if (players.get(players.size() - aux).getRole().equals("Espião")) {
                 player_place.setText("Descobre os outros locais");
             } else {
                 player_place.setText(place);
-                players.get(players.size() - player_size_aux.get()).setPlace(place);
+                players.get(players.size() - aux).setPlace(place);
             }
 
             // Change the visibility of the player's name and role to visible
@@ -93,6 +95,9 @@ public class QueueActivity extends AppCompatActivity {
 
             // Change the visibility of the player's place to invisible
             ll_role.setVisibility(View.INVISIBLE);
+
+            // Decrease the aux
+            aux--;
         });
 
         // If the next player button is clicked, change visibility of the player title, player number, player name and player role
@@ -100,29 +105,26 @@ public class QueueActivity extends AppCompatActivity {
         next_player.setOnClickListener(v -> {
 
             // If the aux is 0, go to the next activity
-            if (player_size_aux.get() == 0) {
+            if (aux == 0) {
                 Intent intent = new Intent(this, GameActivity.class);
                 startActivity(intent);
             }
 
             // Change player_name to the current player name
-            player_name.setText(players.get(players.size() - player_size_aux.get()).getName());
+            player_name.setText(players.get(players.size() - aux).getName());
 
             // View that disappears
             ll_player.setVisibility(View.INVISIBLE);
 
             // View that appears
             ll_role.setVisibility(View.VISIBLE);
-
-            // Decrease the aux
-            player_size_aux.getAndDecrement();
         });
         // ERRO ONDE O ULTIMO JOGADOR NAO APARECE E NAO VAI PARA A PROXIMA ACTIVITY
 
     }
 
 
-    // Function that give the roles randomly to the ArrayList of roles (1 Investigator for every 4 players)
+    // Function that give the roles randomly to the ArrayList of roles (1 Espião for every 4 players)
     public void giveRoles() {
         for (int i = 0; i < players.size(); i++) {
             if (i % 4 == 0) {
