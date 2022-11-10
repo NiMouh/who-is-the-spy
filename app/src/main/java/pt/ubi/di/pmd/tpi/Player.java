@@ -1,5 +1,7 @@
 package pt.ubi.di.pmd.tpi;
 
+import androidx.annotation.NonNull;
+
 public class Player {
     // Create a class Player that has a name a role and a number
     private String name;
@@ -56,6 +58,7 @@ public class Player {
     }
 
     // Create clone method
+    @NonNull
     public Player clone() {
         Player player = new Player(this.name, this.role);
         player.setPlace(this.place);
@@ -63,6 +66,7 @@ public class Player {
     }
 
     // Create toString method
+    @NonNull
     @Override
     public String toString() {
         return "" + name;

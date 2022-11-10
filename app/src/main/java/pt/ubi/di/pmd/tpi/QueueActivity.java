@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +17,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class QueueActivity extends AppCompatActivity {
 
@@ -37,6 +35,12 @@ public class QueueActivity extends AppCompatActivity {
     // Make an ArrayList of the roles
     ArrayList<String> roles = new ArrayList<>();
 
+    // Make an ArrayList of the locations
+    ArrayList<String> locations = new ArrayList<>();
+
+    // Declare the choosen location variable
+    String choosenLocation;
+
 
     // Make a aux with the number of players
     int aux = players.size();
@@ -50,8 +54,12 @@ public class QueueActivity extends AppCompatActivity {
 
         // Call the method that adds the roles to the ArrayList
         giveRoles();
-        // Declare the place where the players are
-        String place = givePlace();
+        // Call the method that adds the locations to the ArrayList
+        givePlace();
+
+
+        // Initialization of the choosen location as a random location of the locations ArrayList
+        choosenLocation = locations.get((int) (Math.random() * locations.size()));
 
         // Initialization of variables
         player_number = findViewById(R.id.player_number);
@@ -92,8 +100,8 @@ public class QueueActivity extends AppCompatActivity {
             if (players.get(players.size() - aux).getRole().equals("Espião")) {
                 player_place.setText("Descobre os outros locais");
             } else {
-                player_place.setText(place);
-                players.get(players.size() - aux).setPlace(place);
+                player_place.setText(choosenLocation);
+                players.get(players.size() - aux).setPlace(choosenLocation);
             }
 
             // Change the visibility of the player's name and role to visible
@@ -141,14 +149,11 @@ public class QueueActivity extends AppCompatActivity {
     }
 
     // Function that opens a .txt file with the locations saves them in an array and returns one of them randomly
-    public String givePlace() {
+    public void givePlace() {
         // Read the file location.xml in the raw folder
         InputStream inputStream = getResources().openRawResource(R.raw.location);
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-        // Make an ArrayList of the locations
-        ArrayList<String> places = new ArrayList<>();
 
         // Read the file line by line and add it to the ArrayList
         String line;
@@ -160,14 +165,11 @@ public class QueueActivity extends AppCompatActivity {
         try {
             while ((line = bufferedReader.readLine()) != null) {
                 if (!line.equals("<resources>") && !line.equals("</resources>") && !line.equals("<?xml version=\"1.0\" encoding=\"utf-8\"?>")) {
-                    places.add(line);
+                    locations.add(line);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // Return a random location
-        return places.get((int) (Math.random() * places.size()));
     }
 }
