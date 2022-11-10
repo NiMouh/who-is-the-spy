@@ -2,6 +2,7 @@ package pt.ubi.di.pmd.tpi;
 
 import static pt.ubi.di.pmd.tpi.MainActivity.players;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -49,6 +50,12 @@ public class GameActivity extends AppCompatActivity {
     // Declare an ArrayList with the remaining players
     public static ArrayList<Player> remainingPlayers;
 
+    // Declare an ArrayList with the round players
+    public static ArrayList<Player> roundPlayers;
+
+    // Declare an ArrayList with the reunion players
+    Player current_player;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +63,7 @@ public class GameActivity extends AppCompatActivity {
 
         // Initialize the ArrayList
         remainingPlayers = new ArrayList<>(players);
+        roundPlayers = new ArrayList<>(players);
 
         // Initialize the buttons
         next_player = findViewById(R.id.next_player);
@@ -81,8 +89,15 @@ public class GameActivity extends AppCompatActivity {
         ll_reunion = findViewById(R.id.ll_reunion);
         ll_guess_location = findViewById(R.id.ll_guess);
 
-        // Declare an ArrayList with the round players and put them all the players in it
-        AtomicReference<ArrayList<Player>> roundPlayers = new AtomicReference<>(new ArrayList<>(players));
+
+        // Set a current player
+        current_player = roundPlayers.get((int) (Math.random() * roundPlayers.size()));
+
+        // Set the text of the first player to play (randomly)
+        turn_player.setText(current_player.getName());
+
+        // Remove the player from the ArrayList (the player that has his name on the turn_player TextView)
+        roundPlayers.remove(current_player);
 
         // The game starts
         // It will choose the first player randomly in the roundPlayers ArrayList
@@ -91,7 +106,7 @@ public class GameActivity extends AppCompatActivity {
         // If the roundPlayers ArrayList is empty, it will show a reunion room
         next_player.setOnClickListener(v -> {
             // If the roundPlayers ArrayList is empty, it will show a reunion room
-            if (roundPlayers.get().isEmpty()) {
+            if (roundPlayers.isEmpty()) {
                 // Hide the turn
                 ll_turn.setVisibility(View.GONE);
 
@@ -101,17 +116,17 @@ public class GameActivity extends AppCompatActivity {
                 // Show the reunion room
                 ll_reunion.setVisibility(View.VISIBLE);
 
-                // Insert the remaining players in reunion_players text view + the number of each player
+                // Set the remaining players in reunion_players text view + the number of each player
                 for (int i = 0; i < remainingPlayers.size(); i++) {
-                    reunion_players.append(remainingPlayers.get(i).getName() + " - " + remainingPlayers.get(i).getNumber() + "\n");
+                    reunion_players.append(reunion_players.getText() + remainingPlayers.get(i).getName() + " - " + (i + 1) + "\n");
                 }
             } else {
                 // Get a player randomly from the roundPlayers ArrayList
-                Player current_player = roundPlayers.get().get((int) (Math.random() * roundPlayers.get().size()));
+                current_player = roundPlayers.get((int) (Math.random() * roundPlayers.size()));
                 // Show his name on the screen
                 turn_player.setText(current_player.getName());
                 // And remove him from the ArrayList
-                roundPlayers.get().remove(current_player);
+                roundPlayers.remove(current_player);
             }
         });
 
@@ -122,27 +137,68 @@ public class GameActivity extends AppCompatActivity {
             // Get the number that the player inserted
             int num = Integer.parseInt(insert_num.getText().toString());
 
-            // Check if the number is in the remainingPlayers ArrayList, if it is, remove the player from the ArrayList
-            if (remainingPlayers.stream().anyMatch(player -> player.getNumber() == num)) {
-                remainingPlayers.removeIf(player -> player.getNumber() == num);
-                roundPlayers.get().removeIf(player -> player.getNumber() == num);
-                Snackbar.make(v, "Player kicked", Snackbar.LENGTH_SHORT).show();
+            // If the num is '0', then don't do anything
+            if (num == 0) {
+                // Print a Snackbar message saying you choose to not remove anyone
+                Snackbar.make(v, "You choose to not remove anyone", Snackbar.LENGTH_LONG).show();
             } else {
-                // If not show an error message
-                Snackbar.make(v, "Player not found", Snackbar.LENGTH_SHORT).show();
+                // If the num is bigger than the remaining players or less than zero, then don't do anything
+                if (num > remainingPlayers.size() || num < 0) {
+                    Snackbar.make(v, "Please insert a number between 1 and " + remainingPlayers.size(), Snackbar.LENGTH_LONG).show();
+                } else {
+                    // Else remove the player from the remainingPlayers and roundPlayers ArrayList
+                    remainingPlayers.remove(num - 1);
+                    Snackbar.make(v, "Player kicked", Snackbar.LENGTH_SHORT).show();
+                }
             }
 
-            // Hide the reunion room
-            ll_reunion.setVisibility(View.GONE);
 
-            // Reset Round Players
-            roundPlayers.set(new ArrayList<>(remainingPlayers));
+            // Check if the remainingPlayers ArrayList only has two players
+            // If it's true, then the game ends
+            if (remainingPlayers.size() == 2) {
+                // If one of them has a role "Espião" then remove the other one from the remainingPlayers ArrayList
+                // And go to the result activity
+                if (remainingPlayers.get(0).getRole().equals("Espião") || remainingPlayers.get(1).getRole().equals("Espião")) {
+                    // Remove the player with the role "Investigador" from the remainingPlayers ArrayList
+                    remainingPlayers.removeIf(player -> player.getRole().equals("Investigador"));
+                    Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+                    startActivity(intent);
+                } else {
+                    // Go to the result activity
+                    Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+                    startActivity(intent);
+                }
 
-            // Show the turn
-            ll_turn.setVisibility(View.VISIBLE);
 
-            // Show the guess button
-            guess_btn.setVisibility(View.VISIBLE);
+                // If so, the game ends and it will show the result (ResultActivity)
+                Intent intent = new Intent(this, ResultActivity.class);
+                startActivity(intent);
+            }
+            // else if all the players with the role "Espião" are out
+            else if (remainingPlayers.stream().noneMatch(player -> player.getRole().equals("Espião"))) {
+                // If so, the game ends and it will show the result (ResultActivity)
+                Intent intent = new Intent(this, ResultActivity.class);
+                startActivity(intent);
+            }
+            else {
+                // Hide the reunion room
+                ll_reunion.setVisibility(View.GONE);
+
+                // Reset the insert_num EditText
+                insert_num.setText("");
+
+                // Reset Round Players
+                roundPlayers = new ArrayList<>(remainingPlayers);
+
+                // Perform a click on the next player button
+                next_player.performClick();
+
+                // Show the turn
+                ll_turn.setVisibility(View.VISIBLE);
+
+                // Show the guess button
+                guess_btn.setVisibility(View.VISIBLE);
+            }
         });
 
         // If the guess button is clicked then it will show the options of the locations for the player to guess

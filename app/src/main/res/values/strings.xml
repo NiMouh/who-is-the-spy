@@ -8,7 +8,7 @@
     <string name="adicionar">+</string>
     <string name="adiciona_jogador">Adicionar Jogador</string>
     <string name="adicionar_texto">Adicionar Texto</string>
-    <string name="nome_dos_jogadores">Nome dos Jogadores:</string>
+    <string name="nome_dos_jogadores">Nome dos Jogadores:\n</string>
     <string name="jogador_role_title">JOGADOR</string>
     <string name="X_role_title">X</string>
     <string name="proximo_role_btn">Próximo</string>
@@ -35,5 +35,5 @@
     <string name="escolha_local">Escolha a localização certa</string>
     <string name="confirmar">Confirmar</string>
     <string name="reunion_title">Escolha o jogador que pretende eliminar</string>
-    <string name="reunion_subtitle"><![CDATA[Caso não queira eliminar ninguem, selecionar &quot;0&quot;]]></string>
+    <string name="reunion_subtitle">Caso não queira eliminar ninguem, selecionar "0"</string>
 </resources>

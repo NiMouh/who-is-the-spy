@@ -44,6 +44,9 @@ public class ResultActivity extends AppCompatActivity {
         // Set the winner role to the first role in the ArrayList of the remaining players
         win_role.setText(remainingPlayers.get(0).getRole());
 
+        // Reset the win_names TextView
+        win_names.setText("");
+
         // Set the winner names to the names of all the remaining players
         for (int i = 0; i < remainingPlayers.size(); i++) {
             win_names.setText(win_names.getText() + remainingPlayers.get(i).getName() + "\n");

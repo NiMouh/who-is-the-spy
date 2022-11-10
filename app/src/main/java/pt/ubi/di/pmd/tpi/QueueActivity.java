@@ -75,11 +75,17 @@ public class QueueActivity extends AppCompatActivity {
             // Change the player's number to the current player
             player_number.setText((players.size() - aux + 1) + "");
 
+            // Get a random role from the ArrayList of roles
+            String role = roles.get((int) (Math.random() * roles.size()));
+
             // Change the player's role to the current player
-            player_role.setText(roles.get(players.size() - aux));
+            player_role.setText(role);
 
             // Give that player the role of the current player
-            players.get(players.size() - aux).setRole(roles.get(players.size() - aux));
+            players.get(players.size() - aux).setRole(role);
+
+            // Remove the role from the ArrayList of roles
+            roles.remove(role);
 
             // Change the player's place to the current player
             // If the player have the role "Espião" then the place is "Descobre os outros locais" else give the place
@@ -108,38 +114,29 @@ public class QueueActivity extends AppCompatActivity {
             if (aux == 0) {
                 Intent intent = new Intent(this, GameActivity.class);
                 startActivity(intent);
+            } else {
+                // Change player_name to the current player name
+                player_name.setText(players.get(players.size() - aux).getName());
+
+                // View that disappears
+                ll_player.setVisibility(View.INVISIBLE);
+
+                // View that appears
+                ll_role.setVisibility(View.VISIBLE);
             }
-
-            // Change player_name to the current player name
-            player_name.setText(players.get(players.size() - aux).getName());
-
-            // View that disappears
-            ll_player.setVisibility(View.INVISIBLE);
-
-            // View that appears
-            ll_role.setVisibility(View.VISIBLE);
         });
-        // ERRO ONDE O ULTIMO JOGADOR NAO APARECE E NAO VAI PARA A PROXIMA ACTIVITY
 
     }
 
 
-    // Function that give the roles randomly to the ArrayList of roles (1 Espião for every 4 players)
+    // Function that give the roles randomly to the ArrayList of roles (1 Espião for every 5 players)
     public void giveRoles() {
         for (int i = 0; i < players.size(); i++) {
-            if (i % 4 == 0) {
+            if (i % 5 == 0) {
                 roles.add("Espião");
             } else {
                 roles.add("Investigador");
             }
-        }
-
-        // Shuffle the roles
-        for (int i = 0; i < roles.size(); i++) {
-            int random = (int) (Math.random() * roles.size());
-            String temp = roles.get(i);
-            roles.set(i, roles.get(random));
-            roles.set(random, temp);
         }
     }
 
