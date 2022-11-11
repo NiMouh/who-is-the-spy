@@ -42,7 +42,7 @@ public class QueueActivity extends AppCompatActivity {
     String choosenLocation;
 
 
-    // Make a aux with the number of players
+    // Make an aux with the number of players
     int aux = players.size();
 
 

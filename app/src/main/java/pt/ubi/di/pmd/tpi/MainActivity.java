@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     int max_players = 10;
     int min_players = 5;
 
-    // Make an array list of players static so it can be accessed from other activities
+    // Make an array list of players static, so it can be accessed from other activities
     public static ArrayList<Player> players = new ArrayList<>();
 
     @SuppressLint("SetTextI18n")
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
             if (player_name.getText().toString().isEmpty()) {
                 Snackbar.make(findViewById(android.R.id.content), "Nome Vazio", Snackbar.LENGTH_LONG).show();
             } else {
-                // Run through every player on ArrayList, and If the the name is already in the ArrayList of players pop up an error
+                // Run through every player on ArrayList, and If the name is already in the ArrayList of players pop up an error
                 for (Player player : players) {
                     if (player.getName().equals(player_name.getText().toString())) {
                         Snackbar.make(findViewById(android.R.id.content), "Jogador já existe", Snackbar.LENGTH_LONG).show();
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 // Add the player to the ArrayList
                 players.add(new Player(player_name.getText().toString()));
                 // Add the player to the TextView
-                list_players.setText(list_players.getText() + "\n" + player_name.getText().toString());
+                list_players.setText(list_players.getText() + "\n" + player_name.getText());
                 // Clean the EditText
                 player_name.setText("");
             }

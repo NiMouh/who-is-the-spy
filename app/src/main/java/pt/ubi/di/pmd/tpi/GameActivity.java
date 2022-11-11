@@ -9,8 +9,11 @@ import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.snackbar.Snackbar;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -47,6 +50,9 @@ public class GameActivity extends AppCompatActivity {
 
     // Declare an ArrayList with the round players
     public static ArrayList<Player> roundPlayers;
+
+    // Declare an ArrayList with all the locations
+    public static ArrayList<String> locations = new ArrayList<>();
 
     // Declare an ArrayList with the reunion players
     Player current_player;
@@ -85,6 +91,13 @@ public class GameActivity extends AppCompatActivity {
         ll_guess_location = findViewById(R.id.ll_guess);
 
 
+        // Call the method that adds the locations to the ArrayList
+        getLocations();
+
+        // Save the correct location in a variable (it's in on of the player's roles)
+        String correctLocation = getCorrectLocation();
+
+
         // Set a current player
         current_player = roundPlayers.get((int) (Math.random() * roundPlayers.size()));
 
@@ -113,7 +126,7 @@ public class GameActivity extends AppCompatActivity {
 
                 // Set the remaining players in reunion_players text view + the number of each player
                 for (int i = 0; i < remainingPlayers.size(); i++) {
-                    reunion_players.append(reunion_players.getText() + remainingPlayers.get(i).getName() + " - " + (i + 1) + "\n");
+                    reunion_players.append(remainingPlayers.get(i).getName() + " - " + (i + 1) + "\n");
                 }
             } else {
                 // Get a player randomly from the roundPlayers ArrayList
@@ -165,19 +178,21 @@ public class GameActivity extends AppCompatActivity {
                 }
 
 
-                // If so, the game ends and it will show the result (ResultActivity)
+                // If so, the game ends, and it will show the result (ResultActivity)
                 Intent intent = new Intent(this, ResultActivity.class);
                 startActivity(intent);
             }
             // else if all the players with the role "Espião" are out
             else if (remainingPlayers.stream().noneMatch(player -> player.getRole().equals("Espião"))) {
-                // If so, the game ends and it will show the result (ResultActivity)
+                // If so, the game ends, and it will show the result (ResultActivity)
                 Intent intent = new Intent(this, ResultActivity.class);
                 startActivity(intent);
-            }
-            else {
+            } else {
                 // Hide the reunion room
                 ll_reunion.setVisibility(View.GONE);
+
+                // Reset the reunion_players text view (with the @string/nome_dos_jogadores)
+                reunion_players.setText(R.string.nome_dos_jogadores);
 
                 // Reset the insert_num EditText
                 insert_num.setText("");
@@ -203,15 +218,22 @@ public class GameActivity extends AppCompatActivity {
             // Hide the guess button
             guess_btn.setVisibility(Button.INVISIBLE);
 
-            // Get the locations
-            ArrayList<String> locations = getLocations();
-
-            // Show the locations on the CheckTextViews (including always the correct location)
+            // Select a location from the locations ArrayList randomly, add it to option1 and remove it from the ArrayList
             option1.setText(locations.get((int) (Math.random() * locations.size())));
+            locations.remove(option1.getText().toString());
+
             option2.setText(locations.get((int) (Math.random() * locations.size())));
+            locations.remove(option2.getText().toString());
+
             option3.setText(locations.get((int) (Math.random() * locations.size())));
+            locations.remove(option3.getText().toString());
+
             option4.setText(locations.get((int) (Math.random() * locations.size())));
+            locations.remove(option4.getText().toString());
+
             option5.setText(locations.get((int) (Math.random() * locations.size())));
+            locations.remove(option5.getText().toString());
+
 
             // Show the guess location screen
             ll_guess_location.setVisibility(LinearLayout.VISIBLE);
@@ -219,56 +241,118 @@ public class GameActivity extends AppCompatActivity {
 
         // If the guess location button is clicked then it will check if the player only selected one option and if it is the correct one
         guess_location.setOnClickListener(v -> {
-            // If the player selected more than one option, it will show a message saying that he can only select one option
-            if (option1.isChecked() && option2.isChecked() || option1.isChecked() && option3.isChecked() || option1.isChecked() && option4.isChecked() || option1.isChecked() && option5.isChecked() || option2.isChecked() && option3.isChecked() || option2.isChecked() && option4.isChecked() || option2.isChecked() && option5.isChecked() || option3.isChecked() && option4.isChecked() || option3.isChecked() && option5.isChecked() || option4.isChecked() && option5.isChecked()) {
-                // Show a message saying that he can only select one option (Snackbar)
-                Snackbar.make(findViewById(android.R.id.content), "Apenas pode selecionar uma opção!", Snackbar.LENGTH_LONG).show();
+            // If the player selected the correct option, it will show a message saying that he guessed correctly
+            if (option1.isChecked() && option1.getText().equals(correctLocation) || option2.isChecked() && option2.getText().equals(correctLocation) || option3.isChecked() && option3.getText().equals(correctLocation) || option4.isChecked() && option4.getText().equals(correctLocation) || option5.isChecked() && option5.getText().equals(correctLocation)) {
+                // Change remainingPlayers ArrayList for only players that are "Espião" role
+                remainingPlayers.removeIf(player -> !player.getRole().equals("Espião"));
+
+                // If the player guesses correctly, the game ends, and it will show the result (ResultActivity)
+                Intent intent = new Intent(this, ResultActivity.class);
+                startActivity(intent);
+            }
+            // If no option is selected, then show a message saying that the player needs to select one option
+            else if (!option1.isChecked() && !option2.isChecked() && !option3.isChecked() && !option4.isChecked() && !option5.isChecked()) {
+                Snackbar.make(v, "Please select one option", Snackbar.LENGTH_LONG).show();
             } else {
-                // If the player selected the correct option, it will show a message saying that he guessed correctly
-                if (option1.isChecked() && option1.getText().equals(getLocations().get(0)) || option2.isChecked() && option2.getText().equals(getLocations().get(0)) || option3.isChecked() && option3.getText().equals(getLocations().get(0)) || option4.isChecked() && option4.getText().equals(getLocations().get(0)) || option5.isChecked() && option5.getText().equals(getLocations().get(0))) {
-                    // Change remainingPlayers ArrayList for only players that are "Espião" role
-                    remainingPlayers.removeIf(player -> !player.getRole().equals("Espião"));
+                // If the player selected the wrong option, it will show a message saying that he guessed incorrectly
+                // And remove him from the remaining players
+                if (option1.isChecked() || option2.isChecked() || option3.isChecked() || option4.isChecked() || option5.isChecked()) {
+                    // Remove him from the remaining players and the game continues
+                    remainingPlayers.removeIf(player -> player.getName().contentEquals(turn_player.getText()));
 
-                    // If the player guesses correctly, the game ends and it will show the result (ResultActivity)
-                    Intent intent = new Intent(this, ResultActivity.class);
-                    startActivity(intent);
-                } else {
-                    // If the player selected the wrong option, it will show a message saying that he guessed incorrectly
-                    // And remove him from the remaining players
-                    if (option1.isChecked() || option2.isChecked() || option3.isChecked() || option4.isChecked() || option5.isChecked()) {
-                        // Remove him from the remaining players and the game continues
-                        remainingPlayers.removeIf(player -> player.getName().contentEquals(turn_player.getText()));
+                    // Reset the CheckTextViews
+                    option1.setChecked(false);
+                    option2.setChecked(false);
+                    option3.setChecked(false);
+                    option4.setChecked(false);
+                    option5.setChecked(false);
 
-                        // Reset the CheckTextViews
-                        option1.setChecked(false);
-                        option2.setChecked(false);
-                        option3.setChecked(false);
-                        option4.setChecked(false);
-                        option5.setChecked(false);
+                    // Click the next player button
+                    next_player.performClick();
 
-                        // Click the next player button
-                        next_player.performClick();
+                    // Hide the guess location screen
+                    ll_guess_location.setVisibility(LinearLayout.GONE);
 
-                        // Hide the guess location screen
-                        ll_guess_location.setVisibility(LinearLayout.GONE);
-
-                        // Show the turn
-                        ll_turn.setVisibility(LinearLayout.VISIBLE);
-                    }
+                    // Show the turn
+                    ll_turn.setVisibility(LinearLayout.VISIBLE);
                 }
             }
         });
+
+
+        // Check if option1 CheckTextView is clicked
+        option1.setOnClickListener(v -> {
+            // If it is clicked, it will uncheck the other options
+            option2.setChecked(false);
+            option3.setChecked(false);
+            option4.setChecked(false);
+            option5.setChecked(false);
+            // And it will check the option1
+            option1.setChecked(true);
+        });
+
+        // Check if option2 CheckTextView is clicked
+        option2.setOnClickListener(v -> {
+            // If it is clicked, it will uncheck the other options
+            option1.setChecked(false);
+            option3.setChecked(false);
+            option4.setChecked(false);
+            option5.setChecked(false);
+            // And it will check the option2
+            option2.setChecked(true);
+        });
+
+        // Check if option3 CheckTextView is clicked
+        option3.setOnClickListener(v -> {
+            // If it is clicked, it will uncheck the other options
+            option1.setChecked(false);
+            option2.setChecked(false);
+            option4.setChecked(false);
+            option5.setChecked(false);
+            // And it will check the option3
+            option3.setChecked(true);
+        });
+
+        // Check if option4 CheckTextView is clicked
+        option4.setOnClickListener(v -> {
+            // If it is clicked, it will uncheck the other options
+            option1.setChecked(false);
+            option2.setChecked(false);
+            option3.setChecked(false);
+            option5.setChecked(false);
+            // And check the option4
+            option4.setChecked(true);
+        });
+
+        // Check if option5 CheckTextView is clicked
+        option5.setOnClickListener(v -> {
+            // If it is clicked, it will uncheck the other options
+            option1.setChecked(false);
+            option2.setChecked(false);
+            option3.setChecked(false);
+            option4.setChecked(false);
+            // And check the option5
+            option5.setChecked(true);
+        });
+    }
+
+    // Function that will run the users until I find an "Investigador" role, if I find it, it will return his location
+    private String getCorrectLocation() {
+        // Get the location of the Investigador
+        for (Player player : remainingPlayers) {
+            if (player.getRole().equals("Investigador")) {
+                return player.getPlace();
+            }
+        }
+        return null;
     }
 
     // Function to get the locations, return an ArrayList with the locations
-    public ArrayList<String> getLocations() {
+    public void getLocations() {
         // Read the file location.txt in the raw folder
         InputStream inputStream = getResources().openRawResource(R.raw.location);
         InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-        // Get all the locations from the locations XML file
-        ArrayList<String> location = new ArrayList<>();
 
         // Read the file line by line and add it to the ArrayList
         String line;
@@ -276,14 +360,16 @@ public class GameActivity extends AppCompatActivity {
         // Try to read the file
         try {
             while ((line = bufferedReader.readLine()) != null) {
-                location.add(line);
+                // Only add the line if it is not "<xml version="1.0" encoding="utf-8"?>" or "</resources>" or "<resources>"
+                // And can't be already in the ArrayList
+
+                if (!line.equals("<?xml version=\"1.0\" encoding=\"utf-8\"?>") && !line.equals("</resources>") && !line.equals("<resources>") && !locations.contains(line)) {
+                    locations.add(line);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // Return the ArrayList with the locations
-        return location;
     }
 
 }
