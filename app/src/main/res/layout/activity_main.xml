@@ -49,16 +49,6 @@
             android:inputType="textPersonName"
             android:textColorHint="#757575" />
 
-        <TextView
-            android:id="@+id/lista_jogadores"
-            android:layout_width="198dp"
-            android:layout_height="230dp"
-            android:layout_marginTop="92dp"
-            android:gravity="start"
-            android:text="@string/nome_dos_jogadores"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,6 +74,17 @@
                 android:textColor="#FFFFFF"
                 tools:ignore="ButtonStyle,TextContrastCheck" />
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/lista_jogadores"
+            android:layout_width="198dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="70dp"
+            android:gravity="start"
+            android:text="@string/nome_dos_jogadores"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

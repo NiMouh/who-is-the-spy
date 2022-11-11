@@ -8,15 +8,17 @@
 
     <LinearLayout
         android:id="@+id/ll_turn"
-        android:layout_width="318dp"
-        android:layout_height="759dp"
+        android:layout_width="292dp"
+        android:layout_height="714dp"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.446">
 
         <TextView
             android:id="@+id/turn_title"
@@ -47,13 +49,13 @@
         android:id="@+id/guess_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:background="#3F484C"
         android:text="@string/palpite"
         android:textColor="@color/white"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintHorizontal_bias="0.814"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_turn"
         tools:ignore="DuplicateSpeakableTextCheck" />
@@ -74,41 +76,43 @@
             android:id="@+id/local_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/escolha_local" />
+            android:layout_marginBottom="20dp"
+            android:text="@string/escolha_local"
+            android:textSize="20sp" />
 
-        <CheckedTextView
+        <CheckBox
             android:id="@+id/option_1"
-            android:layout_width="142dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="@string/opcao_1" />
 
-        <CheckedTextView
+        <CheckBox
             android:id="@+id/option_2"
-            android:layout_width="142dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="@string/opcao_2" />
 
-        <CheckedTextView
+        <CheckBox
             android:id="@+id/option_3"
-            android:layout_width="142dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="@string/opcao_3" />
 
-        <CheckedTextView
+        <CheckBox
             android:id="@+id/option_4"
-            android:layout_width="142dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="@string/opcao_4" />
 
-        <CheckedTextView
+        <CheckBox
             android:id="@+id/option_5"
-            android:layout_width="142dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
             android:text="@string/opcao_5" />
 
         <Button

@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckedTextView;
+import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -33,11 +33,12 @@ public class GameActivity extends AppCompatActivity {
     TextView turn_player;
     TextView reunion_players;
 
-    CheckedTextView option1;
-    CheckedTextView option2;
-    CheckedTextView option3;
-    CheckedTextView option4;
-    CheckedTextView option5;
+    // Declaration of option Checkbox variables
+    CheckBox option1;
+    CheckBox option2;
+    CheckBox option3;
+    CheckBox option4;
+    CheckBox option5;
 
 
     // Declaration of LinearLayouts
@@ -77,7 +78,7 @@ public class GameActivity extends AppCompatActivity {
         insert_num = findViewById(R.id.insert_num);
         reunion_players = findViewById(R.id.reunion_players);
 
-        // Initialize the checked text views
+        // Initialize the checkboxes
         option1 = findViewById(R.id.option_1);
         option2 = findViewById(R.id.option_2);
         option3 = findViewById(R.id.option_3);
@@ -273,8 +274,11 @@ public class GameActivity extends AppCompatActivity {
                     // Hide the guess location screen
                     ll_guess_location.setVisibility(LinearLayout.GONE);
 
-                    // Show the turn
-                    ll_turn.setVisibility(LinearLayout.VISIBLE);
+                    // If roundPlayers ArrayList is now empty, then it will not show the turn room
+                    if (!roundPlayers.isEmpty()){
+                        // Show the turn
+                        ll_turn.setVisibility(LinearLayout.VISIBLE);
+                    }
                 }
             }
         });
