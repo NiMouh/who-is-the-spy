@@ -11,11 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.io.BufferedReader;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class ResultActivity extends AppCompatActivity {
 
@@ -53,11 +49,7 @@ public class ResultActivity extends AppCompatActivity {
         }
 
         // Save the score in the scoreboard XML file (with player's names and roles)
-        try {
-            saveScore(win_role.getText().toString(), win_names.getText().toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        newScore(win_role.getText().toString(), win_names.getText().toString());
 
         // If the new game button is clicked, it will start a new game
         new_game.setOnClickListener(v -> {
@@ -74,26 +66,21 @@ public class ResultActivity extends AppCompatActivity {
         });
     }
 
-    // Function that receives the name of the role and the player's names and saves it in the scoreboard XML file
-    public void saveScore(String role, String names) throws IOException {
-        // Insert in the file scoreboard.xml in the raw folder
-        InputStream inputStream = getResources().openRawResource(R.raw.scoreboard);
-        // Read the file
-        BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-        // Make a string with the content of the file
-        String line = reader.readLine();
-        // Make a string with the content of the file
-        StringBuilder fileContent = new StringBuilder();
-        // While the line is not null, add it to the fileContent string
-        while (line != null) {
-            fileContent.append(line).append("\n");
-            line = reader.readLine();
+    // This function receives two strings (the role of the winners, and the names of the winners)
+    // And saves it in the scoreboard XML file located in the raw folder
+    public void newScore(String winner_role, String winner_names){
+        // Declare the FileOutputStream variable
+        FileOutputStream outputStream;
+        // Try to open the scoreboard XML file
+        try {
+            // Open the scoreboard XML file, located in the raw folder (res/raw/scoreboard.xml)
+            outputStream = openFileOutput("scoreboard.xml", Context.MODE_APPEND);
+            // Write the winner role and names in the file
+            outputStream.write(("\n<score><player_role>" + winner_role + "</player_role><player_names>" + winner_names + "</player_names></score>").getBytes());
+            // Close the file
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        // Add the new score to the fileContent string "<player_role> <player_names>" inside "<score>"
-        fileContent.append("<score><player_role>").append(role).append("</player_role><player_names>").append(names).append("</player_names></score>");
-        // Save the fileContent string in the scoreboard.xml file
-        FileOutputStream outputStream = openFileOutput("scoreboard.xml", Context.MODE_PRIVATE);
-        outputStream.write(fileContent.toString().getBytes());
-        outputStream.close();
     }
 }

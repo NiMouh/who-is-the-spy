@@ -36,10 +36,10 @@ public class QueueActivity extends AppCompatActivity {
     ArrayList<String> roles = new ArrayList<>();
 
     // Make an ArrayList of the locations
-    ArrayList<String> locations = new ArrayList<>();
+    public static ArrayList<String> locations = new ArrayList<>();
 
     // Declare the choosen location variable
-    String choosenLocation;
+    public static String choosenLocation;
 
 
     // Make an aux with the number of players
@@ -164,7 +164,7 @@ public class QueueActivity extends AppCompatActivity {
         // Neither "<?xml version="1.0" encoding="utf-8"?>"
         try {
             while ((line = bufferedReader.readLine()) != null) {
-                if (!line.equals("<resources>") && !line.equals("</resources>") && !line.equals("<?xml version=\"1.0\" encoding=\"utf-8\"?>")) {
+                if (!line.equals("<resources>") && !line.equals("</resources>") && !line.equals("<?xml version=\"1.0\" encoding=\"utf-8\"?>") && !locations.contains(line)) {
                     locations.add(line);
                 }
             }

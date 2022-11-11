@@ -1,6 +1,8 @@
 package pt.ubi.di.pmd.tpi;
 
 import static pt.ubi.di.pmd.tpi.MainActivity.players;
+import static pt.ubi.di.pmd.tpi.QueueActivity.choosenLocation;
+import static pt.ubi.di.pmd.tpi.QueueActivity.locations;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,10 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.snackbar.Snackbar;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
@@ -51,9 +49,6 @@ public class GameActivity extends AppCompatActivity {
 
     // Declare an ArrayList with the round players
     public static ArrayList<Player> roundPlayers;
-
-    // Declare an ArrayList with all the locations
-    public static ArrayList<String> locations = new ArrayList<>();
 
     // Declare an ArrayList with the reunion players
     Player current_player;
@@ -90,13 +85,6 @@ public class GameActivity extends AppCompatActivity {
         ll_turn = findViewById(R.id.ll_turn);
         ll_reunion = findViewById(R.id.ll_reunion);
         ll_guess_location = findViewById(R.id.ll_guess);
-
-
-        // Call the method that adds the locations to the ArrayList
-        getLocations();
-
-        // Save the correct location in a variable (it's in on of the player's roles)
-        String correctLocation = getCorrectLocation();
 
 
         // Set a current player
@@ -243,7 +231,7 @@ public class GameActivity extends AppCompatActivity {
         // If the guess location button is clicked then it will check if the player only selected one option and if it is the correct one
         guess_location.setOnClickListener(v -> {
             // If the player selected the correct option, it will show a message saying that he guessed correctly
-            if (option1.isChecked() && option1.getText().equals(correctLocation) || option2.isChecked() && option2.getText().equals(correctLocation) || option3.isChecked() && option3.getText().equals(correctLocation) || option4.isChecked() && option4.getText().equals(correctLocation) || option5.isChecked() && option5.getText().equals(correctLocation)) {
+            if (option1.isChecked() && option1.getText().equals(choosenLocation) || option2.isChecked() && option2.getText().equals(choosenLocation) || option3.isChecked() && option3.getText().equals(choosenLocation) || option4.isChecked() && option4.getText().equals(choosenLocation) || option5.isChecked() && option5.getText().equals(choosenLocation)) {
                 // Change remainingPlayers ArrayList for only players that are "Espião" role
                 remainingPlayers.removeIf(player -> !player.getRole().equals("Espião"));
 
@@ -275,7 +263,7 @@ public class GameActivity extends AppCompatActivity {
                     ll_guess_location.setVisibility(LinearLayout.GONE);
 
                     // If roundPlayers ArrayList is now empty, then it will not show the turn room
-                    if (!roundPlayers.isEmpty()){
+                    if (!roundPlayers.isEmpty()) {
                         // Show the turn
                         ll_turn.setVisibility(LinearLayout.VISIBLE);
                     }
@@ -338,42 +326,6 @@ public class GameActivity extends AppCompatActivity {
             // And check the option5
             option5.setChecked(true);
         });
-    }
-
-    // Function that will run the users until I find an "Investigador" role, if I find it, it will return his location
-    private String getCorrectLocation() {
-        // Get the location of the Investigador
-        for (Player player : remainingPlayers) {
-            if (player.getRole().equals("Investigador")) {
-                return player.getPlace();
-            }
-        }
-        return null;
-    }
-
-    // Function to get the locations, return an ArrayList with the locations
-    public void getLocations() {
-        // Read the file location.txt in the raw folder
-        InputStream inputStream = getResources().openRawResource(R.raw.location);
-        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-
-        // Read the file line by line and add it to the ArrayList
-        String line;
-
-        // Try to read the file
-        try {
-            while ((line = bufferedReader.readLine()) != null) {
-                // Only add the line if it is not "<xml version="1.0" encoding="utf-8"?>" or "</resources>" or "<resources>"
-                // And can't be already in the ArrayList
-
-                if (!line.equals("<?xml version=\"1.0\" encoding=\"utf-8\"?>") && !line.equals("</resources>") && !line.equals("<resources>") && !locations.contains(line)) {
-                    locations.add(line);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 }
