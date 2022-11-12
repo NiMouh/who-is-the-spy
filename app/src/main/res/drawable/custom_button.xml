@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Draw a shape of a cross-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" android:elevation="10dp">
+    <solid android:color="#8B5EDA" />
+    <corners android:radius="10dp" />
+    <!-- draw a shadow -->
+    </shape>

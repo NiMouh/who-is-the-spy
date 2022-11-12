@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/ll_turn"
-        android:layout_width="292dp"
-        android:layout_height="714dp"
+        android:layout_width="300dp"
+        android:layout_height="650dp"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="visible"
@@ -41,23 +41,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="52dp"
+            android:background="@drawable/round_rectangle_button"
+            android:padding="10dp"
             android:text="@string/pergunta_feita" />
 
     </LinearLayout>
 
     <Button
         android:id="@+id/guess_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="#3F484C"
-        android:text="@string/palpite"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="?android:attr/actionModeWebSearchDrawable"
+        android:backgroundTint="#8B5EDA"
+        android:contentDescription="@string/empty"
         android:textColor="@color/white"
         android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.814"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ll_turn"
+        app:layout_constraintVertical_bias="0.17000002"
         tools:ignore="DuplicateSpeakableTextCheck" />
 
     <LinearLayout
@@ -135,41 +139,60 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageView
+            android:id="@+id/reunion_throne"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:contentDescription="@string/titulo_jogo"
+            app:srcCompat="@drawable/throne"
+            tools:layout_marginBottom="20dp" />
+
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/reunion_title" />
+            android:text="@string/reunion_title"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/textView4"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="50dp"
-            android:text="@string/reunion_subtitle" />
+            android:layout_marginBottom="70dp"
+            android:text="@string/reunion_subtitle"
+            android:textAlignment="center" />
 
         <TextView
             android:id="@+id/reunion_players"
             android:layout_width="match_parent"
             android:layout_height="203dp"
             android:layout_marginBottom="50dp"
-            android:text="@string/nome_dos_jogadores" />
+            android:background="@drawable/custom_textview"
+            android:padding="10dp"
+            android:text="@string/nome_dos_jogadores"
+            android:textColor="#0277BD"
+            tools:ignore="TextContrastCheck" />
 
         <EditText
             android:id="@+id/insert_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:backgroundTint="#FF71A4CC"
             android:ems="10"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
+            android:textColor="#0277BD"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
             android:id="@+id/submit_num"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/round_rectangle_button"
+            android:backgroundTint="#98D5CF"
             android:text="@string/confirmar" />
 
     </LinearLayout>

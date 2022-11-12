@@ -15,7 +15,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.355">
 
         <ImageView
             android:id="@+id/imageView"
@@ -42,12 +43,14 @@
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
             android:autofillHints=""
-            android:background="#FFFFFF"
-            android:backgroundTint="#FFFFFF"
+            android:background="@drawable/custom_textview"
             android:ems="10"
             android:hint="@string/adiciona_jogador"
             android:inputType="textPersonName"
-            android:textColorHint="#757575" />
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:textColorHint="#0277BD"
+            tools:ignore="TextContrastCheck" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -57,19 +60,20 @@
 
             <Button
                 android:id="@+id/add_player_btn"
+                style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="72dp"
-                android:background="#8B5EDA"
+                android:layout_marginEnd="70dp"
+                android:background="@drawable/custom_button"
                 android:text="@string/adicionar"
                 android:textColor="#FFFFFF"
-                tools:ignore="ButtonStyle,TextContrastCheck" />
+                tools:ignore="TextContrastCheck" />
 
             <Button
                 android:id="@+id/start_game_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#8B5EDA"
+                android:background="@drawable/custom_button"
                 android:text="@string/comecar"
                 android:textColor="#FFFFFF"
                 tools:ignore="ButtonStyle,TextContrastCheck" />
@@ -77,13 +81,16 @@
 
         <TextView
             android:id="@+id/lista_jogadores"
-            android:layout_width="198dp"
+            android:layout_width="230dp"
             android:layout_height="230dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/custom_textview"
             android:gravity="start"
+            android:padding="5dp"
             android:text="@string/nome_dos_jogadores"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textColor="#0277BD"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
 
