@@ -60,6 +60,8 @@ public class ResultActivity extends AppCompatActivity {
 
         // If the exit button is clicked, it will go to the main menu
         exit.setOnClickListener(v -> {
+            // Reset the players ArrayList
+            MainActivity.players.clear();
             // Go to the main menu
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);

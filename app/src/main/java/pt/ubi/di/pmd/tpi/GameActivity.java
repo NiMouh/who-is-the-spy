@@ -267,6 +267,12 @@ public class GameActivity extends AppCompatActivity {
                         // Show the turn
                         ll_turn.setVisibility(LinearLayout.VISIBLE);
                     }
+
+                    // If there is no more "Espião" players, then the game ends, and it will show the result (ResultActivity)
+                    if (remainingPlayers.stream().noneMatch(player -> player.getRole().equals("Espião"))) {
+                        Intent intent = new Intent(this, ResultActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });
