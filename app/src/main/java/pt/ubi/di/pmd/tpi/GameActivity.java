@@ -202,30 +202,33 @@ public class GameActivity extends AppCompatActivity {
 
         // If the guess button is clicked then it will show the options of the locations for the player to guess
         guess_btn.setOnClickListener(v -> {
-            // Hide the turn
-            ll_turn.setVisibility(LinearLayout.GONE);
-            // Hide the guess button
-            guess_btn.setVisibility(Button.INVISIBLE);
+            // If the current player role is "Espião" then show the options
+            if (current_player.getRole().equals("Espião")) {
+                // Hide the turn
+                ll_turn.setVisibility(LinearLayout.GONE);
+                // Hide the guess button
+                guess_btn.setVisibility(Button.INVISIBLE);
 
-            // Select a location from the locations ArrayList randomly, add it to option1 and remove it from the ArrayList
-            option1.setText(locations.get((int) (Math.random() * locations.size())));
-            locations.remove(option1.getText().toString());
+                // Select a location from the locations ArrayList randomly, add it to option1 and remove it from the ArrayList
+                option1.setText(locations.get((int) (Math.random() * locations.size())));
+                locations.remove(option1.getText().toString());
 
-            option2.setText(locations.get((int) (Math.random() * locations.size())));
-            locations.remove(option2.getText().toString());
+                option2.setText(locations.get((int) (Math.random() * locations.size())));
+                locations.remove(option2.getText().toString());
 
-            option3.setText(locations.get((int) (Math.random() * locations.size())));
-            locations.remove(option3.getText().toString());
+                option3.setText(locations.get((int) (Math.random() * locations.size())));
+                locations.remove(option3.getText().toString());
 
-            option4.setText(locations.get((int) (Math.random() * locations.size())));
-            locations.remove(option4.getText().toString());
+                option4.setText(locations.get((int) (Math.random() * locations.size())));
+                locations.remove(option4.getText().toString());
 
-            option5.setText(locations.get((int) (Math.random() * locations.size())));
-            locations.remove(option5.getText().toString());
+                option5.setText(locations.get((int) (Math.random() * locations.size())));
+                locations.remove(option5.getText().toString());
 
 
-            // Show the guess location screen
-            ll_guess_location.setVisibility(LinearLayout.VISIBLE);
+                // Show the guess location screen
+                ll_guess_location.setVisibility(LinearLayout.VISIBLE);
+            }
         });
 
         // If the guess location button is clicked then it will check if the player only selected one option and if it is the correct one

@@ -28,9 +28,11 @@ public class QueueActivity extends AppCompatActivity {
 
     Button next_player;
     Button queue;
+    Button rules;
 
     LinearLayout ll_player;
     LinearLayout ll_role;
+    LinearLayout ll_rule;
 
     // Make an ArrayList of the roles
     ArrayList<String> roles = new ArrayList<>();
@@ -58,7 +60,7 @@ public class QueueActivity extends AppCompatActivity {
         givePlace();
 
 
-        // Initialization of the choosen location as a random location of the locations ArrayList
+        // Initialization of the chosen location as a random location of the locations ArrayList
         choosenLocation = locations.get((int) (Math.random() * locations.size()));
 
         // Initialization of variables
@@ -70,10 +72,18 @@ public class QueueActivity extends AppCompatActivity {
         // Initialize of buttons
         next_player = findViewById(R.id.next_player_btn);
         queue = findViewById(R.id.queque_btn);
+        rules = findViewById(R.id.rule_btn);
 
         // Set Queue Activity Scenarios
         ll_player = findViewById(R.id.ll_player);
         ll_role = findViewById(R.id.ll_role);
+        ll_rule = findViewById(R.id.ll_rule);
+
+        // If the rules button is clicked, hide the rules layout and show the role layout
+        rules.setOnClickListener(v -> {
+            ll_rule.setVisibility(View.GONE);
+            ll_role.setVisibility(View.VISIBLE);
+        });
 
         // Set player_name to the name of the first player
         player_name.setText(players.get(players.size() - aux).getName());

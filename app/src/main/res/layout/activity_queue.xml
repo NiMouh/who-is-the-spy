@@ -7,6 +7,97 @@
     android:background="#3F484C">
 
     <LinearLayout
+        android:id="@+id/ll_rule"
+        android:layout_width="328dp"
+        android:layout_height="762dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.496">
+
+        <TextView
+            android:id="@+id/rule_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="@string/rule_title"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/rule_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="monospace"
+            android:text="@string/_1_inicialmente_vai_ser_atribuido_a_cada_jogador_uma_fun_o"
+            android:textAlignment="center"
+            android:textColor="#BFBBBB"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/rule_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="monospace"
+            android:text="@string/_2_o_objetivo_dos_espi_es_descobrir_o_local"
+            android:textAlignment="center"
+            android:textColor="#BFBBBB"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/rule_3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="monospace"
+            android:text="@string/_3_o_objetivo_dos_investigadores_descobrir_todos_os_espi_es"
+            android:textAlignment="center"
+            android:textColor="#BFBBBB"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/rule_4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="monospace"
+            android:text="@string/_4_a_qualquer_momento_do_jogo_o_espi_o_pode_dar_um_palpite_do_local_na_se_acertar_o_jogador_vencer_sen_o_expulso"
+            android:textAlignment="center"
+            android:textColor="#BFBBBB"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/rule_5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:fontFamily="monospace"
+            android:text="@string/_5_o_jogo_acaba_caso_n_o_restarem_mais_espi_es_ou_se_restarem_apenas_2_jogadores"
+            android:textAlignment="center"
+            android:textColor="#BFBBBB"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/rule_btn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/arrow_shape"
+            android:paddingEnd="10dp"
+            android:text="@string/rule_btn_text"
+            android:textColor="#FFFFFF"
+            tools:ignore="RtlSymmetry,TextContrastCheck" />
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/ll_player"
         android:layout_width="340dp"
         android:layout_height="750dp"
@@ -88,7 +179,7 @@
         android:layout_height="708dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

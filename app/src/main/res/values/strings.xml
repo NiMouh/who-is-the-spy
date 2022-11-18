@@ -37,4 +37,11 @@
     <string name="reunion_title">Escolha o jogador que pretende eliminar</string>
     <string name="reunion_subtitle">Caso não queira eliminar ninguem, selecionar "0"</string>
     <string name="empty">" "</string>
+    <string name="rule_btn_text">Entendi</string>
+    <string name="rule_title">Regras do jogo</string>
+    <string name="_1_inicialmente_vai_ser_atribuido_a_cada_jogador_uma_fun_o">1. Inicialmente vai ser atribuido a cada jogador uma função.</string>
+    <string name="_2_o_objetivo_dos_espi_es_descobrir_o_local">2. O objetivo dos Espiões é descobrir o local.</string>
+    <string name="_3_o_objetivo_dos_investigadores_descobrir_todos_os_espi_es">3. O objetivo dos Investigadores é descobrir todos os Espiões.</string>
+    <string name="_4_a_qualquer_momento_do_jogo_o_espi_o_pode_dar_um_palpite_do_local_na_se_acertar_o_jogador_vencer_sen_o_expulso">4. A qualquer momento do jogo o Espião pode dar um palpite do local na 🔎, se acertar o jogador vencer senão é expulso.</string>
+    <string name="_5_o_jogo_acaba_caso_n_o_restarem_mais_espi_es_ou_se_restarem_apenas_2_jogadores">5. O jogo acaba caso não restarem mais Espiões ou se restarem apenas 2 jogadores.</string>
 </resources>
