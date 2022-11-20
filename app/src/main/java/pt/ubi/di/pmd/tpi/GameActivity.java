@@ -137,15 +137,15 @@ public class GameActivity extends AppCompatActivity {
             // If the num is '0', then don't do anything
             if (num == 0) {
                 // Print a Snackbar message saying you choose to not remove anyone
-                Snackbar.make(v, "You choose to not remove anyone", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "Escolheram não eliminar ninguém.", Snackbar.LENGTH_LONG).show();
             } else {
                 // If the num is bigger than the remaining players or less than zero, then don't do anything
                 if (num > remainingPlayers.size() || num < 0) {
-                    Snackbar.make(v, "Please insert a number between 1 and " + remainingPlayers.size(), Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(v, "Inserir apenas um número entre 1 e " + remainingPlayers.size(), Snackbar.LENGTH_LONG).show();
                 } else {
                     // Else remove the player from the remainingPlayers and roundPlayers ArrayList
+                    Snackbar.make(v, "O jogador " + remainingPlayers.get(num - 1).getName() + "foi expulso.", Snackbar.LENGTH_SHORT).show();
                     remainingPlayers.remove(num - 1);
-                    Snackbar.make(v, "Player kicked", Snackbar.LENGTH_SHORT).show();
                 }
             }
 
@@ -244,7 +244,7 @@ public class GameActivity extends AppCompatActivity {
             }
             // If no option is selected, then show a message saying that the player needs to select one option
             else if (!option1.isChecked() && !option2.isChecked() && !option3.isChecked() && !option4.isChecked() && !option5.isChecked()) {
-                Snackbar.make(v, "Please select one option", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(v, "Selecione uma opção", Snackbar.LENGTH_LONG).show();
             } else {
                 // If the player selected the wrong option, it will show a message saying that he guessed incorrectly
                 // And remove him from the remaining players

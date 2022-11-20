@@ -14,14 +14,17 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Declaration of the variables
+    // Declaration of the buttons
     Button add_player;
+    Button remove_player;
     Button play_game;
+
+    // Declaration of the TextViews
     TextView player_name;
     TextView list_players;
 
     // Declaration of the max number of players and min number of players
-    int max_players = 10;
+    int max_players = 12;
     int min_players = 5;
 
     // Make an array list of players static, so it can be accessed from other activities
@@ -35,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialization of variables
         add_player = findViewById(R.id.add_player_btn);
+        remove_player = findViewById(R.id.remove_player_btn);
         play_game = findViewById(R.id.start_game_btn);
 
         // Declaration of the TextView with the players names
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         add_player.setOnClickListener(v -> {
             // If the TextView is empty pop up an error
             if (player_name.getText().toString().isEmpty()) {
-                Snackbar.make(findViewById(android.R.id.content), "Nome Vazio", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(findViewById(android.R.id.content), "O nome encontra-se vazio", Snackbar.LENGTH_LONG).show();
             } else {
                 // Run through every player on ArrayList, and If the name is already in the ArrayList of players pop up an error
                 for (Player player : players) {
@@ -60,6 +64,17 @@ public class MainActivity extends AppCompatActivity {
                 list_players.setText(list_players.getText() + "\n" + player_name.getText());
                 // Clean the EditText
                 player_name.setText("");
+            }
+        });
+
+        // If the remove player button is clicked, it will remove the most recent player added
+        remove_player.setOnClickListener(v -> {
+            // If the ArrayList is empty pop up an error
+            if (!players.isEmpty()) {
+                // Remove the last player added to the ArrayList
+                players.remove(players.size() - 1);
+                // Remove the last player added to the TextView
+                list_players.setText(list_players.getText().toString().substring(0, list_players.getText().toString().lastIndexOf("\n")));
             }
         });
 

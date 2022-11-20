@@ -39,7 +39,7 @@
 
         <EditText
             android:id="@+id/player1"
-            android:layout_width="209dp"
+            android:layout_width="240dp"
             android:layout_height="48dp"
             android:layout_marginTop="20dp"
             android:autofillHints=""
@@ -63,9 +63,21 @@
                 style="?android:attr/buttonBarButtonStyle"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="70dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/custom_button"
                 android:text="@string/adicionar"
+                android:textColor="#FFFFFF"
+                tools:ignore="TextContrastCheck" />
+
+            <Button
+                android:id="@+id/remove_player_btn"
+                style="?android:attr/buttonBarButtonStyle"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_button"
+                android:text="@string/remover_jogador"
                 android:textColor="#FFFFFF"
                 tools:ignore="TextContrastCheck" />
 
@@ -81,7 +93,7 @@
 
         <TextView
             android:id="@+id/lista_jogadores"
-            android:layout_width="230dp"
+            android:layout_width="240dp"
             android:layout_height="230dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/custom_textview"
