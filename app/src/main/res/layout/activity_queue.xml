@@ -12,6 +12,7 @@
         android:layout_height="762dp"
         android:gravity="center"
         android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
@@ -37,7 +38,7 @@
             android:fontFamily="monospace"
             android:text="@string/_1_inicialmente_vai_ser_atribuido_a_cada_jogador_uma_fun_o"
             android:textAlignment="center"
-            android:textColor="#BFBBBB"
+            android:textColor="#90A4AE"
             android:textSize="20sp" />
 
         <TextView
@@ -48,7 +49,7 @@
             android:fontFamily="monospace"
             android:text="@string/_2_o_objetivo_dos_espi_es_descobrir_o_local"
             android:textAlignment="center"
-            android:textColor="#BFBBBB"
+            android:textColor="#90A4AE"
             android:textSize="20sp" />
 
         <TextView
@@ -59,7 +60,7 @@
             android:fontFamily="monospace"
             android:text="@string/_3_o_objetivo_dos_investigadores_descobrir_todos_os_espi_es"
             android:textAlignment="center"
-            android:textColor="#BFBBBB"
+            android:textColor="#90A4AE"
             android:textSize="20sp" />
 
         <TextView
@@ -70,7 +71,7 @@
             android:fontFamily="monospace"
             android:text="@string/_4_a_qualquer_momento_do_jogo_o_espi_o_pode_dar_um_palpite_do_local_na_se_acertar_o_jogador_vencer_sen_o_expulso"
             android:textAlignment="center"
-            android:textColor="#BFBBBB"
+            android:textColor="#90A4AE"
             android:textSize="20sp" />
 
         <TextView
@@ -81,7 +82,7 @@
             android:fontFamily="monospace"
             android:text="@string/_5_o_jogo_acaba_caso_n_o_restarem_mais_espi_es_ou_se_restarem_apenas_2_jogadores"
             android:textAlignment="center"
-            android:textColor="#BFBBBB"
+            android:textColor="#90A4AE"
             android:textSize="20sp" />
 
         <Button
@@ -146,7 +147,7 @@
             android:layout_marginTop="38dp"
             android:text="@string/funcao"
             android:textAlignment="center"
-            android:textColor="#BD97FF"
+            android:textColor="#90A4AE"
             android:textSize="26sp" />
 
         <TextView
@@ -154,9 +155,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
+            android:paddingEnd="10dp"
             android:text="@string/local"
             android:textAlignment="center"
-            android:textColor="#FFEB3B"
+            android:textColor="#F9F871"
             android:textSize="22sp" />
 
         <Button
@@ -203,7 +205,7 @@
             android:layout_marginTop="28dp"
             android:text="@string/Nome_do_jogador"
             android:textAlignment="center"
-            android:textColor="#BFBFBF"
+            android:textColor="#C5CFD4"
             android:textSize="30sp" />
 
         <TextView
@@ -214,7 +216,7 @@
             android:fontFamily="monospace"
             android:text="@string/role_subtitulo"
             android:textAlignment="center"
-            android:textColor="#BFBBBB"
+            android:textColor="#C5CFD4"
             android:textSize="20sp" />
 
         <Button
@@ -226,8 +228,8 @@
             android:background="@drawable/arrow_shape"
             android:paddingEnd="10dp"
             android:text="@string/sou_eu"
-            android:textColor="@color/white"
-            tools:ignore="RtlSymmetry" />
+            android:textColor="#FFFFFF"
+            tools:ignore="RtlSymmetry,TextContrastCheck" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

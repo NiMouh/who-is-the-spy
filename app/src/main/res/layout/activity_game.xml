@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF">
+    android:background="#3F484C">
 
     <LinearLayout
         android:id="@+id/ll_turn"
@@ -25,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tua_vez"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textSize="30sp" />
 
         <TextView
@@ -34,6 +34,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
             android:text="@string/Nome_do_jogador"
+            android:textColor="#B0BEC5"
             android:textSize="18sp" />
 
         <Button
@@ -45,7 +46,8 @@
             android:padding="10dp"
             android:text="@string/pergunta_feita"
             android:textColor="#FFFFFF"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
 
     </LinearLayout>
 
@@ -54,10 +56,10 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="?android:attr/actionModeWebSearchDrawable"
-        android:backgroundTint="#8B5EDA"
+        android:backgroundTint="#62BA8A"
         android:contentDescription="@string/empty"
         android:textColor="@color/white"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"
@@ -84,6 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:text="@string/escolha_local"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <CheckBox
@@ -91,42 +94,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:text="@string/opcao_1" />
+            android:text="@string/opcao_1"
+            android:textColor="#B0BEC5" />
 
         <CheckBox
             android:id="@+id/option_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:text="@string/opcao_2" />
+            android:text="@string/opcao_2"
+            android:textColor="#B0BEC5" />
 
         <CheckBox
             android:id="@+id/option_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:text="@string/opcao_3" />
+            android:text="@string/opcao_3"
+            android:textColor="#B0BEC5" />
 
         <CheckBox
             android:id="@+id/option_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:text="@string/opcao_4" />
+            android:text="@string/opcao_4"
+            android:textColor="#B0BEC5" />
 
         <CheckBox
             android:id="@+id/option_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:minHeight="48dp"
-            android:text="@string/opcao_5" />
+            android:text="@string/opcao_5"
+            android:textColor="#B0BEC5" />
 
         <Button
             android:id="@+id/take_guess"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:text="@string/palpite" />
+            android:background="#62BA8A"
+            android:text="@string/palpite"
+            android:textColor="#FFFFFF"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
     <LinearLayout
@@ -155,6 +166,7 @@
             android:layout_height="wrap_content"
             android:text="@string/reunion_title"
             android:textAlignment="center"
+            android:textColor="#FFFFFF"
             android:textSize="20sp" />
 
         <TextView
@@ -163,7 +175,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="70dp"
             android:text="@string/reunion_subtitle"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="#B0BEC5" />
 
         <TextView
             android:id="@+id/reunion_players"
@@ -173,7 +186,7 @@
             android:background="@drawable/custom_textview"
             android:padding="10dp"
             android:text="@string/nome_dos_jogadores"
-            android:textColor="#0277BD"
+            android:textColor="#C5CFD4"
             tools:ignore="TextContrastCheck" />
 
         <EditText
@@ -181,12 +194,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:backgroundTint="#FF71A4CC"
+            android:backgroundTint="#C5CFD4"
             android:ems="10"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
-            android:textColor="#0277BD"
+            android:textColor="#C5CFD4"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <Button
@@ -194,7 +207,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/round_rectangle_button"
-            android:backgroundTint="#98D5CF"
+            android:backgroundTint="#62BA8A"
             android:text="@string/confirmar" />
 
     </LinearLayout>

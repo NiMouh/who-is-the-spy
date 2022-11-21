@@ -79,6 +79,12 @@ public class QueueActivity extends AppCompatActivity {
         ll_role = findViewById(R.id.ll_role);
         ll_rule = findViewById(R.id.ll_rule);
 
+
+        // Set the standard visibility of the layouts
+        ll_rule.setVisibility(View.VISIBLE);
+        ll_player.setVisibility(View.GONE);
+        ll_role.setVisibility(View.GONE);
+
         // If the rules button is clicked, hide the rules layout and show the role layout
         rules.setOnClickListener(v -> {
             ll_rule.setVisibility(View.GONE);

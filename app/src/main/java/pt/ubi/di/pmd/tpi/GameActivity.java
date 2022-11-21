@@ -87,6 +87,13 @@ public class GameActivity extends AppCompatActivity {
         ll_guess_location = findViewById(R.id.ll_guess);
 
 
+        // Set the standard visibility of the elements
+        ll_turn.setVisibility(View.VISIBLE);
+        guess_btn.setVisibility(View.VISIBLE);
+        ll_reunion.setVisibility(View.GONE);
+        ll_guess_location.setVisibility(View.GONE);
+
+
         // Set a current player
         current_player = roundPlayers.get((int) (Math.random() * roundPlayers.size()));
 
@@ -144,7 +151,7 @@ public class GameActivity extends AppCompatActivity {
                     Snackbar.make(v, "Inserir apenas um número entre 1 e " + remainingPlayers.size(), Snackbar.LENGTH_LONG).show();
                 } else {
                     // Else remove the player from the remainingPlayers and roundPlayers ArrayList
-                    Snackbar.make(v, "O jogador " + remainingPlayers.get(num - 1).getName() + "foi expulso.", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(v, "O jogador " + remainingPlayers.get(num - 1).getName() + " foi expulso.", Snackbar.LENGTH_SHORT).show();
                     remainingPlayers.remove(num - 1);
                 }
             }

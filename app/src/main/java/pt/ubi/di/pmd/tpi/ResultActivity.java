@@ -70,7 +70,7 @@ public class ResultActivity extends AppCompatActivity {
 
     // This function receives two strings (the role of the winners, and the names of the winners)
     // And saves it in the scoreboard XML file located in the raw folder
-    public void newScore(String winner_role, String winner_names){
+    public void newScore(String winner_role, String winner_names) {
         // Declare the FileOutputStream variable
         FileOutputStream outputStream;
         // Try to open the scoreboard XML file
