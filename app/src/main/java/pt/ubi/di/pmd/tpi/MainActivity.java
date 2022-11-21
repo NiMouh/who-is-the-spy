@@ -1,18 +1,16 @@
 package pt.ubi.di.pmd.tpi;
 
-import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     // Declaration of the buttons
     Button add_player;
@@ -30,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
     // Make an array list of players static, so it can be accessed from other activities
     public static ArrayList<Player> players = new ArrayList<>();
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(findViewById(android.R.id.content), "Número de jogadores inválido", Snackbar.LENGTH_LONG).show();
             } else {
                 // If the number of players is valid, start the GameActivity
-                Intent intent = new Intent(this, QueueActivity.class);
+                Intent intent = new Intent(MainActivity.this, QueueActivity.class);
                 startActivity(intent);
             }
         });

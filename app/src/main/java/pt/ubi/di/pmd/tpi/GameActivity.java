@@ -4,6 +4,7 @@ import static pt.ubi.di.pmd.tpi.MainActivity.players;
 import static pt.ubi.di.pmd.tpi.QueueActivity.choosenLocation;
 import static pt.ubi.di.pmd.tpi.QueueActivity.locations;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,13 +13,11 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends Activity {
 
     // Declaration of variables
     Button next_player;
@@ -138,72 +137,78 @@ public class GameActivity extends AppCompatActivity {
         // Then the player gets off the remainingPlayers and roundPlayers ArrayList
         // And the game continues
         submit_num.setOnClickListener(v -> {
-            // Get the number that the player inserted
-            int num = Integer.parseInt(insert_num.getText().toString());
-
-            // If the num is '0', then don't do anything
-            if (num == 0) {
-                // Print a Snackbar message saying you choose to not remove anyone
-                Snackbar.make(v, "Escolheram não eliminar ninguém.", Snackbar.LENGTH_LONG).show();
+            // If the string is empty, it will show a message
+            if (insert_num.getText().toString().isEmpty()) {
+                // Print a snack bar message
+                Snackbar.make(v, "Por favor inserir um número", Snackbar.LENGTH_LONG).show();
             } else {
-                // If the num is bigger than the remaining players or less than zero, then don't do anything
-                if (num > remainingPlayers.size() || num < 0) {
-                    Snackbar.make(v, "Inserir apenas um número entre 1 e " + remainingPlayers.size(), Snackbar.LENGTH_LONG).show();
-                } else {
-                    // Else remove the player from the remainingPlayers and roundPlayers ArrayList
-                    Snackbar.make(v, "O jogador " + remainingPlayers.get(num - 1).getName() + " foi expulso.", Snackbar.LENGTH_SHORT).show();
-                    remainingPlayers.remove(num - 1);
-                }
-            }
+                // Get the number that the player inserted
+                int num = Integer.parseInt(insert_num.getText().toString());
 
-
-            // Check if the remainingPlayers ArrayList only has two players
-            // If it's true, then the game ends
-            if (remainingPlayers.size() == 2) {
-                // If one of them has a role "Espião" then remove the other one from the remainingPlayers ArrayList
-                // And go to the result activity
-                if (remainingPlayers.get(0).getRole().equals("Espião") || remainingPlayers.get(1).getRole().equals("Espião")) {
-                    // Remove the player with the role "Investigador" from the remainingPlayers ArrayList
-                    remainingPlayers.removeIf(player -> player.getRole().equals("Investigador"));
-                    Intent intent = new Intent(GameActivity.this, ResultActivity.class);
-                    startActivity(intent);
+                // If the num is '0', then don't do anything
+                if (num == 0) {
+                    // Print a Snackbar message saying you choose to not remove anyone
+                    Snackbar.make(v, "Escolheram não eliminar ninguém.", Snackbar.LENGTH_LONG).show();
                 } else {
-                    // Go to the result activity
-                    Intent intent = new Intent(GameActivity.this, ResultActivity.class);
-                    startActivity(intent);
+                    // If the num is bigger than the remaining players or less than zero, then don't do anything
+                    if (num > remainingPlayers.size() || num < 0) {
+                        Snackbar.make(v, "Inserir apenas um número entre 1 e " + remainingPlayers.size(), Snackbar.LENGTH_LONG).show();
+                    } else {
+                        // Else remove the player from the remainingPlayers and roundPlayers ArrayList
+                        Snackbar.make(v, "O jogador " + remainingPlayers.get(num - 1).getName() + " foi expulso.", Snackbar.LENGTH_SHORT).show();
+                        remainingPlayers.remove(num - 1);
+                    }
                 }
 
 
-                // If so, the game ends, and it will show the result (ResultActivity)
-                Intent intent = new Intent(this, ResultActivity.class);
-                startActivity(intent);
-            }
-            // else if all the players with the role "Espião" are out
-            else if (remainingPlayers.stream().noneMatch(player -> player.getRole().equals("Espião"))) {
-                // If so, the game ends, and it will show the result (ResultActivity)
-                Intent intent = new Intent(this, ResultActivity.class);
-                startActivity(intent);
-            } else {
-                // Hide the reunion room
-                ll_reunion.setVisibility(View.GONE);
+                // Check if the remainingPlayers ArrayList only has two players
+                // If it's true, then the game ends
+                if (remainingPlayers.size() == 2) {
+                    // If one of them has a role "Espião" then remove the other one from the remainingPlayers ArrayList
+                    // And go to the result activity
+                    if (remainingPlayers.get(0).getRole().equals("Espião") || remainingPlayers.get(1).getRole().equals("Espião")) {
+                        // Remove the player with the role "Investigador" from the remainingPlayers ArrayList
+                        remainingPlayers.removeIf(player -> player.getRole().equals("Investigador"));
+                        Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+                        startActivity(intent);
+                    } else {
+                        // Go to the result activity
+                        Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+                        startActivity(intent);
+                    }
 
-                // Reset the reunion_players text view (with the @string/nome_dos_jogadores)
-                reunion_players.setText(R.string.nome_dos_jogadores);
 
-                // Reset the insert_num EditText
-                insert_num.setText("");
+                    // If so, the game ends, and it will show the result (ResultActivity)
+                    Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+                    startActivity(intent);
+                }
+                // else if all the players with the role "Espião" are out
+                else if (remainingPlayers.stream().noneMatch(player -> player.getRole().equals("Espião"))) {
+                    // If so, the game ends, and it will show the result (ResultActivity)
+                    Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+                    startActivity(intent);
+                } else {
+                    // Hide the reunion room
+                    ll_reunion.setVisibility(View.GONE);
 
-                // Reset Round Players
-                roundPlayers = new ArrayList<>(remainingPlayers);
+                    // Reset the reunion_players text view (with the @string/nome_dos_jogadores)
+                    reunion_players.setText(R.string.nome_dos_jogadores);
 
-                // Perform a click on the next player button
-                next_player.performClick();
+                    // Reset the insert_num EditText
+                    insert_num.setText("");
 
-                // Show the turn
-                ll_turn.setVisibility(View.VISIBLE);
+                    // Reset Round Players
+                    roundPlayers = new ArrayList<>(remainingPlayers);
 
-                // Show the guess button
-                guess_btn.setVisibility(View.VISIBLE);
+                    // Perform a click on the next player button
+                    next_player.performClick();
+
+                    // Show the turn
+                    ll_turn.setVisibility(View.VISIBLE);
+
+                    // Show the guess button
+                    guess_btn.setVisibility(View.VISIBLE);
+                }
             }
         });
 

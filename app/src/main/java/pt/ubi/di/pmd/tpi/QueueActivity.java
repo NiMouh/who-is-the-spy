@@ -3,6 +3,7 @@ package pt.ubi.di.pmd.tpi;
 import static pt.ubi.di.pmd.tpi.MainActivity.players;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,15 +11,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class QueueActivity extends AppCompatActivity {
+public class QueueActivity extends Activity {
 
     // Declaration of button and text variables
     TextView player_number;
@@ -42,7 +41,6 @@ public class QueueActivity extends AppCompatActivity {
 
     // Declare the choosen location variable
     public static String choosenLocation;
-
 
     // Make an aux with the number of players
     int aux = players.size();
@@ -136,7 +134,7 @@ public class QueueActivity extends AppCompatActivity {
 
             // If the aux is 0, go to the next activity
             if (aux == 0) {
-                Intent intent = new Intent(this, GameActivity.class);
+                Intent intent = new Intent(QueueActivity.this, GameActivity.class);
                 startActivity(intent);
             } else {
                 // Change player_name to the current player name

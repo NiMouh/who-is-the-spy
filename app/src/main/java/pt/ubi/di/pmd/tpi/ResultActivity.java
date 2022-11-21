@@ -3,17 +3,16 @@ package pt.ubi.di.pmd.tpi;
 import static pt.ubi.di.pmd.tpi.GameActivity.remainingPlayers;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.io.FileOutputStream;
 
-public class ResultActivity extends AppCompatActivity {
+public class ResultActivity extends Activity {
 
     // Declaration of TextView variables
     TextView win_role;
@@ -54,8 +53,9 @@ public class ResultActivity extends AppCompatActivity {
         // If the new game button is clicked, it will start a new game
         new_game.setOnClickListener(v -> {
             // Start a new game and go to the Queue Activity
-            Intent intent = new Intent(this, QueueActivity.class);
+            Intent intent = new Intent(ResultActivity.this, QueueActivity.class);
             startActivity(intent);
+            finish();
         });
 
         // If the exit button is clicked, it will go to the main menu
@@ -63,8 +63,9 @@ public class ResultActivity extends AppCompatActivity {
             // Reset the players ArrayList
             MainActivity.players.clear();
             // Go to the main menu
-            Intent intent = new Intent(this, MainActivity.class);
+            Intent intent = new Intent(ResultActivity.this, MainActivity.class);
             startActivity(intent);
+            finish();
         });
     }
 

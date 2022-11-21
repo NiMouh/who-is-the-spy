@@ -23,7 +23,7 @@
             android:layout_width="125dp"
             android:layout_height="160dp"
             android:contentDescription="@string/icone"
-            app:srcCompat="@drawable/spy" />
+            android:src="@drawable/spy" />
 
         <TextView
             android:id="@+id/textView"
