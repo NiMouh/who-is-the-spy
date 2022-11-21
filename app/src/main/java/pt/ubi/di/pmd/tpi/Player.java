@@ -2,7 +2,9 @@ package pt.ubi.di.pmd.tpi;
 
 import androidx.annotation.NonNull;
 
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     // Create a class Player that has a name a role and a number
     private String name;
     private String role;

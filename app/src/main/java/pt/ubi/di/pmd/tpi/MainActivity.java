@@ -26,7 +26,7 @@ public class MainActivity extends Activity {
     int min_players = 5;
 
     // Make an array list of players static, so it can be accessed from other activities
-    public static ArrayList<Player> players = new ArrayList<>();
+    ArrayList<Player> players = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +83,10 @@ public class MainActivity extends Activity {
             } else {
                 // If the number of players is valid, start the GameActivity
                 Intent intent = new Intent(MainActivity.this, QueueActivity.class);
+                // Set the player variable
+                intent.putExtra("players", players);
                 startActivity(intent);
+                finish();
             }
         });
     }

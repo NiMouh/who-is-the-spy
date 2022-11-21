@@ -1,7 +1,5 @@
 package pt.ubi.di.pmd.tpi;
 
-import static pt.ubi.di.pmd.tpi.MainActivity.players;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -37,13 +35,13 @@ public class QueueActivity extends Activity {
     ArrayList<String> roles = new ArrayList<>();
 
     // Make an ArrayList of the locations
-    public static ArrayList<String> locations = new ArrayList<>();
+    ArrayList<String> locations = new ArrayList<>();
 
     // Declare the choosen location variable
-    public static String choosenLocation;
+    String choosenLocation;
 
     // Make an aux with the number of players
-    int aux = players.size();
+    int aux = 0;
 
 
     @SuppressLint("SetTextI18n")
@@ -52,11 +50,16 @@ public class QueueActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
 
+        // Declare Player ArrayList (with serialized players)
+        ArrayList<Player> players = (ArrayList<Player>) getIntent().getSerializableExtra("players");
+
+        // Make an aux with the number of players
+        aux = players.size();
+
         // Call the method that adds the roles to the ArrayList
         giveRoles();
         // Call the method that adds the locations to the ArrayList
         givePlace();
-
 
         // Initialization of the chosen location as a random location of the locations ArrayList
         choosenLocation = locations.get((int) (Math.random() * locations.size()));
@@ -135,7 +138,18 @@ public class QueueActivity extends Activity {
             // If the aux is 0, go to the next activity
             if (aux == 0) {
                 Intent intent = new Intent(QueueActivity.this, GameActivity.class);
+
+                // Send the players ArrayList to the next activity
+                intent.putExtra("players", players);
+
+                // Send the choosen location to the next activity
+                intent.putExtra("choosenLocation", choosenLocation);
+
+                // Send the location ArrayList to the next activity
+                intent.putExtra("locations", locations);
+
                 startActivity(intent);
+                finish();
             } else {
                 // Change player_name to the current player name
                 player_name.setText(players.get(players.size() - aux).getName());
@@ -153,7 +167,7 @@ public class QueueActivity extends Activity {
 
     // Function that give the roles randomly to the ArrayList of roles (1 Espião for every 5 players)
     public void giveRoles() {
-        for (int i = 0; i < players.size(); i++) {
+        for (int i = 0; i < aux; i++) {
             if (i % 5 == 0) {
                 roles.add("Espião");
             } else {

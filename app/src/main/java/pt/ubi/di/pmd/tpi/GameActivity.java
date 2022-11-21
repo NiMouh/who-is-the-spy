@@ -1,9 +1,5 @@
 package pt.ubi.di.pmd.tpi;
 
-import static pt.ubi.di.pmd.tpi.MainActivity.players;
-import static pt.ubi.di.pmd.tpi.QueueActivity.choosenLocation;
-import static pt.ubi.di.pmd.tpi.QueueActivity.locations;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,10 +40,10 @@ public class GameActivity extends Activity {
     LinearLayout ll_guess_location;
 
     // Declare an ArrayList with the remaining players
-    public static ArrayList<Player> remainingPlayers;
+    ArrayList<Player> remainingPlayers;
 
     // Declare an ArrayList with the round players
-    public static ArrayList<Player> roundPlayers;
+    ArrayList<Player> roundPlayers;
 
     // Declare an ArrayList with the reunion players
     Player current_player;
@@ -56,6 +52,15 @@ public class GameActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        // Declare Player ArrayList (with serialized players)
+        ArrayList<Player> players = (ArrayList<Player>) getIntent().getSerializableExtra("players");
+
+        // Declare the choosen location variable
+        String choosenLocation = getIntent().getStringExtra("choosenLocation");
+
+        // Declare the location ArrayList
+        ArrayList<String> locations = (ArrayList<String>) getIntent().getSerializableExtra("locations");
 
         // Initialize the ArrayList
         remainingPlayers = new ArrayList<>(players);
@@ -170,23 +175,55 @@ public class GameActivity extends Activity {
                         // Remove the player with the role "Investigador" from the remainingPlayers ArrayList
                         remainingPlayers.removeIf(player -> player.getRole().equals("Investigador"));
                         Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+
+                        // Send the remaining players to the result activity
+                        intent.putExtra("remainingPlayers", remainingPlayers);
+
+                        // Send the players to the result activity
+                        intent.putExtra("players", players);
+
                         startActivity(intent);
+                        finish();
                     } else {
                         // Go to the result activity
                         Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+
+                        // Send the remaining players to the result activity
+                        intent.putExtra("remainingPlayers", remainingPlayers);
+
+                        // Send the players to the result activity
+                        intent.putExtra("players", players);
+
                         startActivity(intent);
+                        finish();
                     }
 
 
                     // If so, the game ends, and it will show the result (ResultActivity)
                     Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+
+                    // Send the remaining players to the result activity
+                    intent.putExtra("remainingPlayers", remainingPlayers);
+
+                    // Send the players to the result activity
+                    intent.putExtra("players", players);
+
                     startActivity(intent);
+                    finish();
                 }
                 // else if all the players with the role "Espião" are out
                 else if (remainingPlayers.stream().noneMatch(player -> player.getRole().equals("Espião"))) {
                     // If so, the game ends, and it will show the result (ResultActivity)
                     Intent intent = new Intent(GameActivity.this, ResultActivity.class);
+
+                    // Send the remaining players to the result activity
+                    intent.putExtra("remainingPlayers", remainingPlayers);
+
+                    // Send the players to the result activity
+                    intent.putExtra("players", players);
+
                     startActivity(intent);
+                    finish();
                 } else {
                     // Hide the reunion room
                     ll_reunion.setVisibility(View.GONE);
@@ -252,7 +289,15 @@ public class GameActivity extends Activity {
 
                 // If the player guesses correctly, the game ends, and it will show the result (ResultActivity)
                 Intent intent = new Intent(this, ResultActivity.class);
+
+                // Send the remaining players to the result activity
+                intent.putExtra("remainingPlayers", remainingPlayers);
+
+                // Send the players to the result activity
+                intent.putExtra("players", players);
+
                 startActivity(intent);
+                finish();
             }
             // If no option is selected, then show a message saying that the player needs to select one option
             else if (!option1.isChecked() && !option2.isChecked() && !option3.isChecked() && !option4.isChecked() && !option5.isChecked()) {
@@ -286,7 +331,15 @@ public class GameActivity extends Activity {
                     // If there is no more "Espião" players, then the game ends, and it will show the result (ResultActivity)
                     if (remainingPlayers.stream().noneMatch(player -> player.getRole().equals("Espião"))) {
                         Intent intent = new Intent(this, ResultActivity.class);
+
+                        // Send the remaining players to the result activity
+                        intent.putExtra("remainingPlayers", remainingPlayers);
+
+                        // Send the players to the result activity
+                        intent.putExtra("players", players);
+
                         startActivity(intent);
+                        finish();
                     }
                 }
             }

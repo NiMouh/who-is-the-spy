@@ -1,7 +1,5 @@
 package pt.ubi.di.pmd.tpi;
 
-import static pt.ubi.di.pmd.tpi.GameActivity.remainingPlayers;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -11,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 
 public class ResultActivity extends Activity {
 
@@ -27,6 +26,12 @@ public class ResultActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
+
+        // Declare the remaining players ArrayList (with serialized players)
+        ArrayList<Player> remainingPlayers = (ArrayList<Player>) getIntent().getSerializableExtra("remainingPlayers");
+
+        // Declare the players ArrayList (with serialized players)
+        ArrayList<Player> players = (ArrayList<Player>) getIntent().getSerializableExtra("players");
 
         // Initialization of TextView variables
         win_role = findViewById(R.id.role_result);
@@ -61,7 +66,7 @@ public class ResultActivity extends Activity {
         // If the exit button is clicked, it will go to the main menu
         exit.setOnClickListener(v -> {
             // Reset the players ArrayList
-            MainActivity.players.clear();
+            players.clear();
             // Go to the main menu
             Intent intent = new Intent(ResultActivity.this, MainActivity.class);
             startActivity(intent);
