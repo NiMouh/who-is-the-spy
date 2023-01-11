@@ -59,6 +59,7 @@ public class ResultActivity extends Activity {
         new_game.setOnClickListener(v -> {
             // Start a new game and go to the Queue Activity
             Intent intent = new Intent(ResultActivity.this, QueueActivity.class);
+            intent.putExtra("players", players);
             startActivity(intent);
             finish();
         });
@@ -69,6 +70,7 @@ public class ResultActivity extends Activity {
             players.clear();
             // Go to the main menu
             Intent intent = new Intent(ResultActivity.this, MainActivity.class);
+            intent.putExtra("players", players);
             startActivity(intent);
             finish();
         });
